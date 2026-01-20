@@ -16,3 +16,12 @@ npm create vite@latest
 - main.js file gốc của dự án dùng để code jsx hiển thị lên div#root
   - file này được ReactCompiler đóng gói -> dist
 - .gitignore: loại bỏ những file ko muốn đưa lên git
+
+# phím tắt
+rasce
+# tool
+- Dùng để debug: React Developer Tools
+- Convet html to jsx : html-to-jsx
+
+# Note
+- chia layout thì mình chia ở page, component cha , ko chia layout ở các component con vì nó có thể tái sử dụng
