@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client'
-import BaiTapThucHanhLayout from './pages/BaiTapThucHanhLayout'
+import HomePage from './pages/HomePage'
+import "./assets/css/style.css";
 
 
 createRoot(document.getElementById('root')).render(
   <>
-    <BaiTapThucHanhLayout />
+    <HomePage />
   </>
 )

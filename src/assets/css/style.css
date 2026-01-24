@@ -1,0 +1,32 @@
+.bg-header {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+main {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('./glassesImage/background.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.model {
+    padding-top: 30%;
+    width: 70%;
+    margin: auto;
+}
+
+.model .avatar {
+    width: 250px;
+}
+
+.model .glass {
+    top: 27%;
+    left: 0;
+}
+
+.glassItem {
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.glassItem.active {
+    border: 2px solid #f00;
+}
