@@ -1,10 +1,17 @@
 # yêu cầu
-- Cho mảng dữ liệu xây dựng ứng dụng chọn kính.
--  Thực hiện chức năng khi người dùng chọn kính bên
-dưới thì người mẫu phía bên phải được thay đổi
-kính tương ứng
--  Yêu cầu: Xác định thành phần nào trên giao diện
-thay đổi, tổ chức lưu trữ dữ liệu đó dưới dạng state,
-và áp dụng setState đối với sự kiện tương ứng.
--  Link down resource : 
-https://drive.google.com/drive/folders/17XBnY7CVCHyFylFsmAZP5mkhPpg9ATBX
+❖ Cho mảng dataJson. Link: https://drive.google.com/open?id=1M36QC9s4VreAV68UIRbgfq_VSk5m844i
+- Tạo cấu trúc component như sau:
+```jsx
+<ShoesStore>
+< ProductList productsData={products} setStateModal = {this.setStateModal}>
+<ProductItem item={product} setStateModal={this.props.setStateModal}> </ProductItem>
+<ProductItem item={product} setStateModal={this.props.setStateModal}> </ProductItem>
+<ProductItem item={product} setStateModal={this.props.setStateModal}> </ProductItem>
+</ ProductList >
+<Modal content={this.state.productDetail} />
+</ ShoesStore >
+```
+- Yêu cầu dùng props để tạo giao diện như sau.Có thể
+dùng bootstrap, w3css, material … để hổ trợ.
+- Thêm component Modal để khi người dùng click vào sẽ
+hiện thông tin chi tiết của sản phẩm
