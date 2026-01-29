@@ -15,6 +15,7 @@ import RenderWithMap from './pages/PropsDemo/RenderWithMap'
 import ProductList from './pages/PropsDemo/BTRenderProduct/ProductList'
 import LiftingStateUpDemo from './pages/LiftingStateUpDemo/LiftingStateUpDemo'
 import ExerciseCarStore from './pages/LiftingStateUpDemo/ExerciseCarStore'
+import BaiTapGioHang from './pages/LiftingStateUpDemo/BaiTapGioHang/BaiTapGioHang'
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')).render(
     {/* <RenderWithMap /> */}
     {/* <ProductList /> */}
     {/* <LiftingStateUpDemo /> */}
-    <ExerciseCarStore />
+    {/* <ExerciseCarStore /> */}
+    <BaiTapGioHang />
   </>
 )

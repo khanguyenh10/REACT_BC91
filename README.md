@@ -26,3 +26,6 @@ rasce
 # Note
 - chia layout thì mình chia ở page, component cha , ko chia layout ở các component con vì nó có thể tái sử dụng
 
+# package hỗ trợ
+
+npm i lodash
