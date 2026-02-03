@@ -47,9 +47,9 @@ const BaiTapGioHang = () => {
             setArrGH(arrGioHangNew);
         }
     }
-    const capNhatSoLuong = (newValue, soLuong) => {
+    const capNhatSoLuong = (newValue, maSP) => {
         let arrGioHangNew = lodash.cloneDeep(arrGH); // chep ra arrObject mới
-        let spUpdate = arrGioHangNew.find(spGH => spGH.maSP == soLuong);
+        let spUpdate = arrGioHangNew.find(spGH => spGH.maSP == maSP);
         if (spUpdate && newValue > 0) {
             spUpdate.soLuong = newValue;
             setArrGH(arrGioHangNew);

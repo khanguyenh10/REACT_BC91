@@ -16,6 +16,9 @@ import ProductList from './pages/PropsDemo/BTRenderProduct/ProductList'
 import LiftingStateUpDemo from './pages/LiftingStateUpDemo/LiftingStateUpDemo'
 import ExerciseCarStore from './pages/LiftingStateUpDemo/ExerciseCarStore'
 import BaiTapGioHang from './pages/LiftingStateUpDemo/BaiTapGioHang/BaiTapGioHang'
+import GetAllProductPage from './pages/Api/GetAllProductPage'
+import ReactFormDemo from './pages/ReactFormDemo/ReactFormDemo'
+import DemoFormikYup from './pages/ReactFormDemo/DemoFormikYup'
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -34,6 +37,9 @@ createRoot(document.getElementById('root')).render(
     {/* <ProductList /> */}
     {/* <LiftingStateUpDemo /> */}
     {/* <ExerciseCarStore /> */}
-    <BaiTapGioHang />
+    {/* <BaiTapGioHang /> */}
+    {/* <GetAllProductPage /> */}
+    {/* <ReactFormDemo /> */}
+    <DemoFormikYup />
   </>
 )
