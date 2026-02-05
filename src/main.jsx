@@ -19,9 +19,49 @@ import BaiTapGioHang from './pages/LiftingStateUpDemo/BaiTapGioHang/BaiTapGioHan
 import GetAllProductPage from './pages/Api/GetAllProductPage'
 import ReactFormDemo from './pages/ReactFormDemo/ReactFormDemo'
 import DemoFormikYup from './pages/ReactFormDemo/DemoFormikYup'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Contact from './pages/Contact'
+import About from './pages/About'
+import HeaderHome from './components/HeaderHome';
+import AdminDashBoard from './pages/AdminPage/AdminDashBoard'
+import AdminTemplate from './Templates/AdminTemplate'
+import UserManagement from './pages/AdminPage/UserManagement'
+import ProductManagement from './pages/AdminPage/ProductManagement'
+import HomeTemplate from './Templates/HomeTemplate'
+import DemoUserNavigate from './pages/HookRouting/DemoUseNavigate'
+import Profile from './pages/Profile'
+import ForgotPass from './pages/ForgotPass'
 
 createRoot(document.getElementById('root')).render(
   <>
+    <BrowserRouter>
+      {/* <HeaderHome /> */}
+      <Routes>
+        <Route path='' element={<HomeTemplate />}>
+          <Route index element={<HomePage />} ></Route>
+          <Route path='index' element={<HomePage />} ></Route>
+          <Route path='data-binding' element={<DataBinding />}></Route>
+          <Route path='change-carcolor' element={<CarDemo />}></Route>
+          <Route path='register' element={<Register />}></Route>
+          <Route path='about' element={<About />}></Route>
+          <Route path='contact' element={<Contact />}></Route>
+          <Route path='login' element={<Login />}></Route>
+          <Route path='cart' element={<BaiTapGioHang />}></Route>
+          <Route path='demo-useNavigate' element={<DemoUserNavigate />}></Route>
+          <Route path='profile' element={<Profile />}></Route>
+          <Route path='forgot-pass' element={<ForgotPass />}></Route>
+        </Route>
+      </Routes>
+      <Routes>
+        <Route path='admin' element={<AdminTemplate />}>
+          <Route index element={<AdminDashBoard />}></Route>
+          <Route path='users' element={<UserManagement />}></Route>
+          <Route path='products' element={<ProductManagement />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
     {/* <HomePage /> */}
     {/* <BaiTapAlbum /> */}
     {/* <h1>Hello cybersoft</h1> */}
@@ -40,6 +80,6 @@ createRoot(document.getElementById('root')).render(
     {/* <BaiTapGioHang /> */}
     {/* <GetAllProductPage /> */}
     {/* <ReactFormDemo /> */}
-    <DemoFormikYup />
+    {/* <DemoFormikYup /> */}
   </>
 )
