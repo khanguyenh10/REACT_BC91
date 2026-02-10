@@ -39,4 +39,5 @@ https://apistore.cybersoft.edu.vn/swagger/index.html
 npm i formik yup
 
 # router dom
-npm i router dom
+- npm i router dom
+- nào kế thừa giao diện thì mới lồng ở trong

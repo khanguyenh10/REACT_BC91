@@ -33,6 +33,11 @@ import HomeTemplate from './Templates/HomeTemplate'
 import DemoUserNavigate from './pages/HookRouting/DemoUseNavigate'
 import Profile from './pages/Profile'
 import ForgotPass from './pages/ForgotPass'
+import Detail from './pages/Detail'
+import Search from './pages/Search'
+import CreateProduct from './pages/CreateProduct'
+import EditProduct from './pages/EditProduct'
+
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -40,7 +45,7 @@ createRoot(document.getElementById('root')).render(
       {/* <HeaderHome /> */}
       <Routes>
         <Route path='' element={<HomeTemplate />}>
-          <Route index element={<HomePage />} ></Route>
+          <Route index element={<GetAllProductPage />} ></Route>
           <Route path='index' element={<HomePage />} ></Route>
           <Route path='data-binding' element={<DataBinding />}></Route>
           <Route path='change-carcolor' element={<CarDemo />}></Route>
@@ -52,13 +57,18 @@ createRoot(document.getElementById('root')).render(
           <Route path='demo-useNavigate' element={<DemoUserNavigate />}></Route>
           <Route path='profile' element={<Profile />}></Route>
           <Route path='forgot-pass' element={<ForgotPass />}></Route>
+          <Route path='detail/:id' element={<Detail />}></Route>
+          <Route path='search' element={<Search />}></Route>
         </Route>
       </Routes>
       <Routes>
         <Route path='admin' element={<AdminTemplate />}>
           <Route index element={<AdminDashBoard />}></Route>
           <Route path='users' element={<UserManagement />}></Route>
-          <Route path='products' element={<ProductManagement />}></Route>
+          <Route path='products' element={<ProductManagement />}>
+          </Route>
+          <Route path='products/addNew' element={<CreateProduct />}></Route>
+          <Route path='products/edit/:id' element={<EditProduct />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

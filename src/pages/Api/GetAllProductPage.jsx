@@ -1,6 +1,7 @@
 //rafce
 import axios from 'axios';
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom';
 
 const GetAllProductPage = () => {
     const [arrProduct, setArrProduct] = React.useState([
@@ -57,6 +58,7 @@ const GetAllProductPage = () => {
                             <div className='card-body'>
                                 <h3 className='card-title'>{product.name}</h3>
                                 <p className='card-text'>{product.price}</p>
+                                <NavLink to={`detail/${product.id}`} className='btn btn-success'>Add to cart</NavLink >
                             </div>
                         </div>
                     </div>
