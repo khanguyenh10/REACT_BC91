@@ -37,6 +37,7 @@ import Detail from './pages/Detail'
 import Search from './pages/Search'
 import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
+import ProductAddNewEdit from './pages/ProductAddNewEdit'
 
 
 createRoot(document.getElementById('root')).render(
@@ -69,6 +70,7 @@ createRoot(document.getElementById('root')).render(
           </Route>
           <Route path='products/addNew' element={<CreateProduct />}></Route>
           <Route path='products/edit/:id' element={<EditProduct />}></Route>
+          <Route path='product/:id?' element={<ProductAddNewEdit />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

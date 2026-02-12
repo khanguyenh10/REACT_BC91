@@ -1,17 +1,20 @@
 import axios from 'axios'
 import { useFormik } from 'formik'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useMatch, useNavigate } from 'react-router-dom'
 
 
 //Bước 1: tạo giao diện html cho component để người dùng có chỗ input data vào như API
 //Bước 2: Gọi api thêm tương ứng
 
 
-const CreateProduct = () => {
-
+const ProductAddNewEdit = () => {
+    const match = useMatch('/admin/product/:id');
+    console.log(match)
+    const isEdit = !!match; //ép giá trị truthy thành true
     const navigate = useNavigate();
     const productInfo = useFormik({
+        enableReinitialize: isEdit,
         initialValues: {
             "id": 0,
             "name": "string",
@@ -24,33 +27,47 @@ const CreateProduct = () => {
         onSubmit: async (values) => {
             console.log(values)
             //Gọi api create product
+            let url = `https://apistore.cybersoft.edu.vn/api/Product/addNew`;
+            let method = 'post';
+            if (isEdit) {
+                url = 'https://apistore.cybersoft.edu.vn/api/Product/updateProduct';
+                method = 'put';
+            }
+
             try {
-                const res = await axios.post(`https://apistore.cybersoft.edu.vn/api/Product/addNew`, values);
-
-                console.log(res.data.content);
-                //Nếu thành công 
-                alert('Thêm sản phẩm thành công !');
-                //Thành công chuyển vào trang admin/products
+                const res = await axios[method](url, values);
+                alert('Lưu thành công!');
                 navigate('/admin/products');
-
-
-
+                // ob.key => ob['key']
             } catch (err) {
-                console.log(err.response.data)
-                alert('Thêm sản phẩm thất bại !');
-
+                alert('Lưu thất bại!');
             }
         }
     })
 
+    //Gọi api để load dữ liệu chi tiết 
+    const getProductDetailApi = async () => {
+        try {
+            const res = await axios.get(`https://apistore.cybersoft.edu.vn/api/Product/getid?id=${match.params.id}`);
+            //set dữ liệu vào values của formik 
+            productInfo.setValues(res.data.content);
+            // productInfo.setFieldValue("name",res.data.content.hoTen); 
+        } catch (err) {
 
+        }
+    }
+    useEffect(() => {
+        if (isEdit) {
+            getProductDetailApi();
+        }
+
+    }, [match?.params?.id])
     return (
         <div className="container mt-4 ">
             <h1 className="card-header fw-bold mt-2">
                 Product Information
             </h1>
             <div className="card shadow-sm ">
-
 
                 <div className="card-body">
                     <form onSubmit={productInfo.handleSubmit}>
@@ -156,4 +173,4 @@ const CreateProduct = () => {
     )
 }
 
-export default CreateProduct
+export default ProductAddNewEdit
