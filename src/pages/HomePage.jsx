@@ -7,8 +7,7 @@ const HomePage = () => {
     <>
       <main >
         <div className="container">
-          Bài tập đặt vé
-          {/* <ShoeStore /> */}
+          <ShoeStore />
         </div>
       </main>
     </>
