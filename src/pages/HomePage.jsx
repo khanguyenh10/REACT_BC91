@@ -7,7 +7,8 @@ const HomePage = () => {
     <>
       <main >
         <div className="container">
-          <ShoeStore />
+          Baitapdatve
+          {/* <ShoeStore /> */}
         </div>
       </main>
     </>
