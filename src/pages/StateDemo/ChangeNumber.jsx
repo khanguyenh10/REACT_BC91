@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ChangeNumber = () => {
+    // state : giá trị thay đổi trên giao diện
     //hook(Hàm chỉ sử dụng cho function component) useState : Quản lý giá trị thay đổi trên giao diện
 
     //[number,function(newNumber) => number = newNumber]

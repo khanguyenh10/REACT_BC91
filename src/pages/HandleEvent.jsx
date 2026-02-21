@@ -6,6 +6,9 @@ const HandleEvent = () => {
     const handleClick = (e) => {
         console.log('hello ahihi')
     }
+    const handleClickBinding = (message, e) => {
+        console.log(message, e)
+    }
     //Khai báo các hàm xử lý
     const getProductApi = () => {
         console.log('getProductApi')
@@ -14,6 +17,8 @@ const HandleEvent = () => {
         <div className="container">
             <h1>Handle Event</h1>
             <button className='btn btn-success' onClick={handleClick}>HandleEvent</button>
+            {/* truyền tham số bằng .bind */}
+            <button className='btn btn-warning ms-2' onClick={handleClickBinding.bind(this, 'ahihi')}>HandleEvent</button>
             <br />
             <button className='btn btn-danger' onClick={(event) => {
                 console.log('Hello anonymous function');
@@ -42,4 +47,4 @@ const handleEvent = () => {
     }
 }
 
-handleEvent();
+handleEvent()();

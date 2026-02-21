@@ -1,5 +1,8 @@
 import React from 'react'
 
+
+// option chaining: Kiểm tra object khi có thuộc tính nếu khác null hoặc undefine thì in ra , còn nếu null hoặc undefine thì bỏ qua
+
 const CardDemo = (props) => {
     const { product } = props;
     return (

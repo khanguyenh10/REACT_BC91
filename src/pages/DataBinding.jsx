@@ -1,10 +1,13 @@
 import React from 'react'
 
 const DataBinding = () => {
-    //hàm 
+    //biến  
     let title = "cybersoft";
     let hoTen = 'Khai';
-    //biến
+    //hàm
+    /*
+     Đối với hàm khi render dữ liệu có thể trả về dạng number, string , bool, jsx
+    */
     const renderName = (name) => {
         return (
             <div>

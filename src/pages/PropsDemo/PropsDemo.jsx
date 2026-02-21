@@ -6,7 +6,7 @@ import ChildrenProp from './ChildrenProp'
 
 
 /*
-    Props là properties (các thuộc tính của thẻ)
+    Props là properties (các thuộc tính của thẻ) do ta tự định nghĩa
     + Đối với thẻ bình thường input (id,value, className,style,...)
     + Đối với thẻ <Component propName="value" />
     + Props là giá trị không được gán lại (const hằng số)

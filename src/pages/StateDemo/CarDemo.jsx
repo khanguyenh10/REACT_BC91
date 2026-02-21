@@ -1,6 +1,6 @@
 import React from 'react'
 /*
-     B1: Xây dựng giao diện
+    B1: Xây dựng giao diện
     B2: Xác định dữ liệu thay đổi (string, bool, number, ...)
     B3: Data binding state lên giao diện
     B4: Xây dựng sự kiện xử lý setState

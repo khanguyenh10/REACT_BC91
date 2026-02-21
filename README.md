@@ -17,7 +17,7 @@ npm create vite@latest
   - file này được ReactCompiler đóng gói -> dist
 - .gitignore: loại bỏ những file ko muốn đưa lên git
 
-# phím tắt
+# phím tắt tạo nhanh component
 rasce
 # tool
 - Dùng để debug: React Developer Tools

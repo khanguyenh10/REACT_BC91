@@ -38,17 +38,25 @@ import Search from './pages/Search'
 import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
 import ProductAddNewEdit from './pages/ProductAddNewEdit'
+import RenderCondition from './pages/RenderCondition'
 
 
 createRoot(document.getElementById('root')).render(
   <>
     <BrowserRouter>
-      {/* <HeaderHome /> */}
       <Routes>
         <Route path='' element={<HomeTemplate />}>
           <Route index element={<GetAllProductPage />} ></Route>
           <Route path='index' element={<HomePage />} ></Route>
+          <Route path='album' element={<BaiTapAlbum />} ></Route>
           <Route path='data-binding' element={<DataBinding />}></Route>
+          <Route path='handle-event' element={<HandleEvent />}></Route>
+          <Route path='render-condition' element={<RenderCondition />}></Route>
+          <Route path='change-number' element={<ChangeNumber />}></Route>
+          <Route path='change-fontsize' element={<ChangeFontSize />}></Route>
+          <Route path='style-component' element={<StyleComponentDemo />}></Route>
+          <Route path='tinker-app' element={<TinkerApp />}></Route>
+          <Route path='props-demo' element={<PropsDemo />}></Route>
           <Route path='change-carcolor' element={<CarDemo />}></Route>
           <Route path='register' element={<Register />}></Route>
           <Route path='about' element={<About />}></Route>
@@ -74,17 +82,6 @@ createRoot(document.getElementById('root')).render(
         </Route>
       </Routes>
     </BrowserRouter>
-    {/* <HomePage /> */}
-    {/* <BaiTapAlbum /> */}
-    {/* <h1>Hello cybersoft</h1> */}
-    {/* <DataBinding /> */}
-    {/* <HandleEvent /> */}
-    {/* <ChangeNumber /> */}
-    {/* <StyleComponentDemo /> */}
-    {/* <ChangeFontSize /> */}
-    {/* <CarDemo /> */}
-    {/* <TinkerApp /> */}
-    {/* <PropsDemo /> */}
     {/* <RenderWithMap /> */}
     {/* <ProductList /> */}
     {/* <LiftingStateUpDemo /> */}
