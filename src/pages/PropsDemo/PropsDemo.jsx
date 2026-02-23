@@ -10,6 +10,10 @@ import ChildrenProp from './ChildrenProp'
     + Đối với thẻ bình thường input (id,value, className,style,...)
     + Đối với thẻ <Component propName="value" />
     + Props là giá trị không được gán lại (const hằng số)
+    + So sánh sự khác biệt giữa state và props
+        + Đều là giá trị binding lên giao diện
+        + State có thể gán lại thông qua phương thức setState
+        + Props sẽ cố định ko thể gán lại giá trị mới (readonly value), nhận từ cha truyền xuống cho thằng con
 */
 
 const PropsDemo = () => {

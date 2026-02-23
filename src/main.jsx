@@ -58,11 +58,15 @@ createRoot(document.getElementById('root')).render(
           <Route path='tinker-app' element={<TinkerApp />}></Route>
           <Route path='props-demo' element={<PropsDemo />}></Route>
           <Route path='change-carcolor' element={<CarDemo />}></Route>
+          <Route path='render-with-map' element={<RenderWithMap />}></Route>
+          <Route path='product-list' element={<ProductList />}></Route>
+          <Route path='lifting-state-up' element={<LiftingStateUpDemo />}></Route>
+          <Route path='exercise-car-store' element={<ExerciseCarStore />}></Route>
+          <Route path='cart' element={<BaiTapGioHang />}></Route>
           <Route path='register' element={<Register />}></Route>
           <Route path='about' element={<About />}></Route>
           <Route path='contact' element={<Contact />}></Route>
           <Route path='login' element={<Login />}></Route>
-          <Route path='cart' element={<BaiTapGioHang />}></Route>
           <Route path='demo-useNavigate' element={<DemoUserNavigate />}></Route>
           <Route path='profile' element={<Profile />}></Route>
           <Route path='forgot-pass' element={<ForgotPass />}></Route>
@@ -82,10 +86,6 @@ createRoot(document.getElementById('root')).render(
         </Route>
       </Routes>
     </BrowserRouter>
-    {/* <RenderWithMap /> */}
-    {/* <ProductList /> */}
-    {/* <LiftingStateUpDemo /> */}
-    {/* <ExerciseCarStore /> */}
     {/* <BaiTapGioHang /> */}
     {/* <GetAllProductPage /> */}
     {/* <ReactFormDemo /> */}

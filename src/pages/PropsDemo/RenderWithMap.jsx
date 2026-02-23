@@ -80,3 +80,8 @@ const RenderWithMap = () => {
 }
 
 export default RenderWithMap
+
+
+function a() {
+    return [1, 2];
+}
