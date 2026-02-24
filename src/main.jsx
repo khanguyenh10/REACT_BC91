@@ -39,52 +39,63 @@ import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
 import ProductAddNewEdit from './pages/ProductAddNewEdit'
 import RenderCondition from './pages/RenderCondition'
-
+import { Provider } from 'react-redux'
+import store from './redux/store';
+import DemoTinkerAppRedux from './pages/ReduxDemo/DemoTinkerAppRedux'
+import DemoChangeCarRedux from './pages/ReduxDemo/DemoChangeCarRedux'
+import DemoChangeNumberRedux from './pages/ReduxDemo/DemoChangeNumberRedux'
+import BTXemChiTietRedux from './pages/ReduxDemo/BTXemChiTietRedux/BTXemChiTietRedux'
 
 createRoot(document.getElementById('root')).render(
   <>
     <BrowserRouter>
-      <Routes>
-        <Route path='' element={<HomeTemplate />}>
-          <Route index element={<GetAllProductPage />} ></Route>
-          <Route path='index' element={<HomePage />} ></Route>
-          <Route path='album' element={<BaiTapAlbum />} ></Route>
-          <Route path='data-binding' element={<DataBinding />}></Route>
-          <Route path='handle-event' element={<HandleEvent />}></Route>
-          <Route path='render-condition' element={<RenderCondition />}></Route>
-          <Route path='change-number' element={<ChangeNumber />}></Route>
-          <Route path='change-fontsize' element={<ChangeFontSize />}></Route>
-          <Route path='style-component' element={<StyleComponentDemo />}></Route>
-          <Route path='tinker-app' element={<TinkerApp />}></Route>
-          <Route path='props-demo' element={<PropsDemo />}></Route>
-          <Route path='change-carcolor' element={<CarDemo />}></Route>
-          <Route path='render-with-map' element={<RenderWithMap />}></Route>
-          <Route path='product-list' element={<ProductList />}></Route>
-          <Route path='lifting-state-up' element={<LiftingStateUpDemo />}></Route>
-          <Route path='exercise-car-store' element={<ExerciseCarStore />}></Route>
-          <Route path='cart' element={<BaiTapGioHang />}></Route>
-          <Route path='register' element={<Register />}></Route>
-          <Route path='about' element={<About />}></Route>
-          <Route path='contact' element={<Contact />}></Route>
-          <Route path='login' element={<Login />}></Route>
-          <Route path='demo-useNavigate' element={<DemoUserNavigate />}></Route>
-          <Route path='profile' element={<Profile />}></Route>
-          <Route path='forgot-pass' element={<ForgotPass />}></Route>
-          <Route path='detail/:id' element={<Detail />}></Route>
-          <Route path='search' element={<Search />}></Route>
-        </Route>
-      </Routes>
-      <Routes>
-        <Route path='admin' element={<AdminTemplate />}>
-          <Route index element={<AdminDashBoard />}></Route>
-          <Route path='users' element={<UserManagement />}></Route>
-          <Route path='products' element={<ProductManagement />}>
+      <Provider store={store}>
+        <Routes>
+          <Route path='' element={<HomeTemplate />}>
+            <Route index element={<GetAllProductPage />} ></Route>
+            <Route path='index' element={<HomePage />} ></Route>
+            <Route path='album' element={<BaiTapAlbum />} ></Route>
+            <Route path='data-binding' element={<DataBinding />}></Route>
+            <Route path='handle-event' element={<HandleEvent />}></Route>
+            <Route path='render-condition' element={<RenderCondition />}></Route>
+            <Route path='change-number' element={<ChangeNumber />}></Route>
+            <Route path='change-fontsize' element={<ChangeFontSize />}></Route>
+            <Route path='style-component' element={<StyleComponentDemo />}></Route>
+            <Route path='tinker-app' element={<TinkerApp />}></Route>
+            <Route path='props-demo' element={<PropsDemo />}></Route>
+            <Route path='change-carcolor' element={<CarDemo />}></Route>
+            <Route path='render-with-map' element={<RenderWithMap />}></Route>
+            <Route path='product-list' element={<ProductList />}></Route>
+            <Route path='lifting-state-up' element={<LiftingStateUpDemo />}></Route>
+            <Route path='exercise-car-store' element={<ExerciseCarStore />}></Route>
+            <Route path='cart' element={<BaiTapGioHang />}></Route>
+            <Route path='register' element={<Register />}></Route>
+            <Route path='about' element={<About />}></Route>
+            <Route path='contact' element={<Contact />}></Route>
+            <Route path='login' element={<Login />}></Route>
+            <Route path='demo-useNavigate' element={<DemoUserNavigate />}></Route>
+            <Route path='profile' element={<Profile />}></Route>
+            <Route path='forgot-pass' element={<ForgotPass />}></Route>
+            <Route path='detail/:id' element={<Detail />}></Route>
+            <Route path='search' element={<Search />}></Route>
+            <Route path='redux-changenumber' element={<DemoChangeNumberRedux />}></Route>
+            <Route path='redux-changecar' element={<DemoChangeCarRedux />}></Route>
+            <Route path='redux-tinkerapp' element={<DemoTinkerAppRedux />}></Route>
+            <Route path='bt-xem-chi-tiet-redux' element={<BTXemChiTietRedux />}></Route>
           </Route>
-          <Route path='products/addNew' element={<CreateProduct />}></Route>
-          <Route path='products/edit/:id' element={<EditProduct />}></Route>
-          <Route path='product/:id?' element={<ProductAddNewEdit />}></Route>
-        </Route>
-      </Routes>
+        </Routes>
+        <Routes>
+          <Route path='admin' element={<AdminTemplate />}>
+            <Route index element={<AdminDashBoard />}></Route>
+            <Route path='users' element={<UserManagement />}></Route>
+            <Route path='products' element={<ProductManagement />}>
+            </Route>
+            <Route path='products/addNew' element={<CreateProduct />}></Route>
+            <Route path='products/edit/:id' element={<EditProduct />}></Route>
+            <Route path='product/:id?' element={<ProductAddNewEdit />}></Route>
+          </Route>
+        </Routes>
+      </Provider>
     </BrowserRouter>
     {/* <BaiTapGioHang /> */}
     {/* <GetAllProductPage /> */}

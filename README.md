@@ -41,3 +41,10 @@ npm i formik yup
 # router dom
 - npm i router dom
 - nào kế thừa giao diện thì mới lồng ở trong
+
+# lifting state up - redux
+- chỉ xài 2 cấp cở xuống , cha ,con
+- còn trên 2 cấp nên dùng redux
+
+npm i @reduxjs/toolkit
+npm i react-redux
