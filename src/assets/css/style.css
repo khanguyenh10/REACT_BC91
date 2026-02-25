@@ -272,9 +272,7 @@ body {
     background: rgba(128, 128, 128, 0.34);
     padding: 3.5vw;
     box-sizing: border-box;
-    display: flex;
-    display: -webkit-flex;
-    flex-wrap: wrap;
+    display: block;
 }
 
 .container {

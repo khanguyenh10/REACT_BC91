@@ -1,8 +1,38 @@
 import React from 'react'
 import dsGhe from "../danhSachGhe.json";
+import { useDispatch, useSelector } from 'react-redux';
 const SeatLayout = () => {
+    const infoUser = useSelector(rootState => rootState.infoUserReducer);
+    const { isSelected, selectedSeats, isConfirmed, numseats } = infoUser;
+    const dispatch = useDispatch();
+    const handleInput = (e, ghe) => {
+        console.log(selectedSeats.length, numseats)
+        if (selectedSeats.length < numseats) {
+            let action = {
+                type: 'SET_SELECTED_A_SEAT',
+                payload: { ...ghe, daDat: !ghe.daDat }
+            };
+            dispatch(action);
+        } else {
+            e.target.checked = false;
+        }
+    }
+    const updateTextArea = () => {
+        if (selectedSeats.length !== numseats) {
+            alert(`Please select ${numseats} seats`)
+            return;
+        } else {
+            let action = {
+                type: 'SET_SELECTED_SEATS',
+                payload: selectedSeats
+            };
+            dispatch(action);
+            dispatch({ type: 'SET_ISCONFIRMED', payload: true });
+        }
+
+    }
     return (
-        <div className="seatStructure txt-center" style={{ overflowX: 'auto' }}>
+        <div className="seatStructure txt-center" style={{ overflowX: 'auto', pointerEvents: (!isSelected || isConfirmed) && 'none' }}>
             <p id="notification" /><table id="seatsBlock">
                 <tbody><tr>
                     <td ></td>
@@ -26,7 +56,7 @@ const SeatLayout = () => {
                                 {item.danhSachGhe.map((ghe, index) => {
                                     return (
                                         <td key={index}>
-                                            <input type="checkbox" className="seats" defaultValue={ghe.soGhe} disabled={ghe.daDat} />
+                                            <input type="checkbox" className="seats" defaultValue={ghe.soGhe} disabled={ghe.daDat} onInput={(e) => handleInput(e, ghe)} />
                                         </td>
                                     )
                                 })}
@@ -38,7 +68,7 @@ const SeatLayout = () => {
             <div className="screen">
                 <h2 className="wthree">Screen this way</h2>
             </div>
-            <button onClick="updateTextArea()" disabled>Confirm Selection</button>
+            <button onClick={updateTextArea} disabled={!isSelected || isConfirmed}>Confirm Selection</button>
         </div>
     )
 }
