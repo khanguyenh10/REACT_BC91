@@ -1,8 +1,8 @@
-import React from 'react'
-import dsGhe from "../danhSachGhe.json";
+import React, { use } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 const SeatLayout = () => {
     const infoUser = useSelector(rootState => rootState.infoUserReducer);
+    const dsGhe = useSelector(rootState => rootState.seatReducer);
     const { isSelected, selectedSeats, isConfirmed, numseats } = infoUser;
     const dispatch = useDispatch();
     const handleInput = (e, ghe) => {
@@ -49,7 +49,7 @@ const SeatLayout = () => {
                     <td>11</td>
                     <td>12</td>
                 </tr>
-                    {dsGhe.map((item, index) => {
+                    {dsGhe?.map((item, index) => {
                         return (
                             <tr key={index}>
                                 <td>{item.hang}</td>

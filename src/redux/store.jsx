@@ -54,10 +54,16 @@ const store = configureStore({
                     return {
                         ...hang,
                         danhSachGhe: hang.danhSachGhe.map(ghe => {
-                            return {
-                                ...ghe,
-                                daDat: action.payload
+                            let index = action.payload.findIndex(seat => seat.soGhe === ghe.soGhe);
+                            if (index !== -1) {
+                                return {
+                                    ...ghe,
+                                    daDat: action.payload[index].daDat
+                                }
+                            } else {
+                                return ghe
                             }
+
                         })
                     }
                 })
