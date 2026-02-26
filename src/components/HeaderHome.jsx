@@ -44,6 +44,9 @@ const HeaderHome = () => {
                             <NavLink className="dropdown-item" to="/redux-changenumber">Change number</NavLink>
                             <NavLink className="dropdown-item" to="/redux-changecar">Change car</NavLink>
                             <NavLink className="dropdown-item" to="/redux-tinkerApp">Tinker App</NavLink>
+                            <NavLink className="dropdown-item" to="/bt-xem-chi-tiet-redux">Bài tập xem chi tiết</NavLink>
+                            <NavLink className="dropdown-item" to="/bt-gio-hang-redux">Bài tập giỏ hàng redux</NavLink>
+                            <NavLink className="dropdown-item" to="/bt-xuc-xac-redux">Bài tập xúc xắc redux</NavLink>
 
                         </div>
                     </li>

@@ -19,7 +19,7 @@ import BaiTapGioHang from './pages/LiftingStateUpDemo/BaiTapGioHang/BaiTapGioHan
 import GetAllProductPage from './pages/Api/GetAllProductPage'
 import ReactFormDemo from './pages/ReactFormDemo/ReactFormDemo'
 import DemoFormikYup from './pages/ReactFormDemo/DemoFormikYup'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Contact from './pages/Contact'
@@ -45,6 +45,8 @@ import DemoTinkerAppRedux from './pages/ReduxDemo/DemoTinkerAppRedux'
 import DemoChangeCarRedux from './pages/ReduxDemo/DemoChangeCarRedux'
 import DemoChangeNumberRedux from './pages/ReduxDemo/DemoChangeNumberRedux'
 import BTXemChiTietRedux from './pages/ReduxDemo/BTXemChiTietRedux/BTXemChiTietRedux'
+import BaiTapGioHangRedux from './pages/ReduxDemo/BTGioHangRedux/BTGioHangRedux'
+import BTXucXacRedux from './pages/ReduxDemo/BTXucXacRedux/BTXucXacRedux'
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -82,6 +84,9 @@ createRoot(document.getElementById('root')).render(
             <Route path='redux-changecar' element={<DemoChangeCarRedux />}></Route>
             <Route path='redux-tinkerapp' element={<DemoTinkerAppRedux />}></Route>
             <Route path='bt-xem-chi-tiet-redux' element={<BTXemChiTietRedux />}></Route>
+            <Route path='bt-gio-hang-redux' element={<BaiTapGioHangRedux />}></Route>
+            <Route path='bt-xuc-xac-redux' element={<BTXucXacRedux />}></Route>
+            <Route path='*' element={<Navigate to='/' />}></Route>
           </Route>
         </Routes>
         <Routes>
