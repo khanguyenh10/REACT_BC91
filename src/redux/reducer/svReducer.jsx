@@ -13,7 +13,17 @@ const getListSV = () => {
     }
     return arrSV;
 }
-
+function stringToSlug(str) {
+    return str
+        .toLowerCase()
+        .normalize("NFD")                 // tách dấu
+        .replace(/[\u0300-\u036f]/g, "") // xoá dấu
+        .replace(/đ/g, "d")
+        .replace(/[^a-z0-9\s-]/g, "")    // xoá ký tự đặc biệt
+        .trim()
+        .replace(/\s+/g, "-")            // space → -
+        .replace(/-+/g, "-");            // bỏ -- dư
+}
 const svSlive = createSlice({
     name: 'svReducer',
     initialState: getListSV(),
@@ -43,8 +53,15 @@ const svSlive = createSlice({
                 state.splice(index, 1)
             }
             saveListSV(state);
+        },
+        timSV: (state, action) => {
+            if (action.payload) {
+                return state.filter(sv => stringToSlug(sv.hoTenSV).search(stringToSlug(action.payload)) !== -1);
+            }
+            return getListSV();
+
         }
     }
 })
-export const { addSV, xoaSV, updateSV } = svSlive.actions
+export const { addSV, xoaSV, updateSV, timSV } = svSlive.actions
 export default svSlive.reducer;

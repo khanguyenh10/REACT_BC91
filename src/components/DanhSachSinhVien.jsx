@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import SinhVien from './SinhVien';
+import TimKiemSinhVien from './TimKiemSinhVien';
 
 const DanhSachSinhVien = (props) => {
     const svReducer = useSelector(state => state.svReducer);
@@ -8,6 +9,7 @@ const DanhSachSinhVien = (props) => {
     // console.log(svReducer)
     return (
         <div className='mt-2'>
+            <TimKiemSinhVien />
             <div
                 className="table-responsive"
             >
