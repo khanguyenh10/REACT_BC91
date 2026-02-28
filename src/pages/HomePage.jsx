@@ -1,14 +1,14 @@
 import React from 'react'
-import ShoeStore from '../components/ShoeStore'
+
+import FormSinhVien from '../components/FormSinhVien'
 const HomePage = () => {
 
 
   return (
     <>
       <main >
-        <div className="container">
-          Baitapform
-          {/* <ShoeStore /> */}
+        <div className="container my-5">
+          <FormSinhVien />
         </div>
       </main>
     </>

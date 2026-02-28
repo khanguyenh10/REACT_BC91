@@ -1,10 +1,14 @@
 import { createRoot } from 'react-dom/client'
 import HomePage from './pages/HomePage'
 import "./assets/css/style.css";
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 
 createRoot(document.getElementById('root')).render(
   <>
-    <HomePage />
+    <Provider store={store}>
+      <HomePage />
+    </Provider>
   </>
 )

@@ -1,17 +1,12 @@
 # yêu cầu
-❖ Cho mảng dataJson. Link: https://drive.google.com/open?id=1M36QC9s4VreAV68UIRbgfq_VSk5m844i
-- Tạo cấu trúc component như sau:
-```jsx
-<ShoesStore>
-< ProductList productsData={products} setStateModal = {this.setStateModal}>
-<ProductItem item={product} setStateModal={this.props.setStateModal}> </ProductItem>
-<ProductItem item={product} setStateModal={this.props.setStateModal}> </ProductItem>
-<ProductItem item={product} setStateModal={this.props.setStateModal}> </ProductItem>
-</ ProductList >
-<Modal content={this.state.productDetail} />
-</ ShoesStore >
-```
-- Yêu cầu dùng props để tạo giao diện như sau.Có thể
-dùng bootstrap, w3css, material … để hổ trợ.
-- Thêm component Modal để khi người dùng click vào sẽ
-hiện thông tin chi tiết của sản phẩm
+Xây dựng giao diện form như hình bên dưới.
+https://apicrm.cybersoft.edu.vn/files/11-[bai_tap]-reactjs-form.pdf
+
++ Yêu cầu:
+Xây dựng chức năng thêm xoá chỉnh sửa form valiation
+cho table bên dưới (8đ) . Áp dụng redux.
+Tạo thêm 1 thanh search xây dựng tính năng tìm kiếm
+dựa trên hàm .filter của mảng. Sử dụng lifecycle cho chức
+năng chỉnh sửa và cập nhật (2đ)
+
+
