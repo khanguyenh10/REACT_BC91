@@ -71,6 +71,8 @@ createRoot(document.getElementById('root')).render(
             <Route path='lifting-state-up' element={<LiftingStateUpDemo />}></Route>
             <Route path='exercise-car-store' element={<ExerciseCarStore />}></Route>
             <Route path='cart' element={<BaiTapGioHang />}></Route>
+            <Route path='react-form' element={<ReactFormDemo />} ></Route>
+            <Route path='react-formik-yup' element={<DemoFormikYup />} ></Route>
             <Route path='register' element={<Register />}></Route>
             <Route path='about' element={<About />}></Route>
             <Route path='contact' element={<Contact />}></Route>
@@ -102,9 +104,5 @@ createRoot(document.getElementById('root')).render(
         </Routes>
       </Provider>
     </BrowserRouter>
-    {/* <BaiTapGioHang /> */}
-    {/* <GetAllProductPage /> */}
-    {/* <ReactFormDemo /> */}
-    {/* <DemoFormikYup /> */}
   </>
 )
