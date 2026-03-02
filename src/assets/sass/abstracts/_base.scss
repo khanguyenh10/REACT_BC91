@@ -1,0 +1,49 @@
+@use "./variable" as *;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul {
+    margin-bottom: 0;
+    padding: 0;
+    list-style: none;
+}
+html {
+    font-size: 10px;
+}
+a {
+    text-decoration: none;
+    color: $color-dark;
+}
+body {
+    font-family: $font-inter, sans-serif;
+    font-size: $text-base;
+    font-weight: $fw-normal;
+    color: $color-dark;
+    line-height: 1.5;
+}
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+}
+
+/* Small Desktop / Large Tablet */
+@media (max-width: 992px) {
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+}

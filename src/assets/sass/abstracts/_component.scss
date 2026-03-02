@@ -1,0 +1,54 @@
+@use "./variable" as *;
+
+$colors: (
+    primary: $color-primary,
+    secondary: $color-secondary,
+    success: $color-success,
+    danger: $color-danger,
+    warning: $color-warning,
+    info: $color-info,
+    light: $color-light,
+    dark: $color-dark
+);
+$fontSizes: (
+    base: $text-base,
+    10: $text-xl,
+    20: $text-2xl,
+    30: $text-3xl,
+    40: $text-4xl
+);
+$fontWeights: (
+    thin: $fw-thin,
+    exlight: $fw-exlight,
+    light: $fw-light,
+    normal: $fw-normal,
+    medium: $fw-medium,
+    semibold: $fw-semibold,
+    bold: $fw-bold
+);
+$sizes: 1rem, 2rem, 3rem, 4rem, 5rem;
+$i: 1;
+//-------------- background --------------
+@each $color, $value in $colors {
+    .bg-#{$color} {
+        background-color: $value !important;
+    }
+}
+//--------------- color------------------
+@each $color, $value in $colors {
+    .text-#{$color} {
+        color: $value !important;
+    }
+}
+//--------------- font-size-------------
+@each $size, $value in $fontSizes {
+    .fs-#{$size} {
+        font-size: $value !important;
+    }
+}
+//-------------- font-weight-------------
+@each $weight, $value in $fontWeights {
+    .fw-#{$weight} {
+        font-weight: $value !important;
+    }
+}

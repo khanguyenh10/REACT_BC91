@@ -1,3 +1,5 @@
+@use "./abstracts/base";
+@use "./abstracts/component";
 @use "./template/header";
 @use "./template/footer";
 @use "./pages/home";

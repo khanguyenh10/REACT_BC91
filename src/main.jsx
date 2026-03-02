@@ -20,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Routes>
           <Route path="" element={<HomeTemplate />} >
             <Route index element={<Home />}></Route>
+            {/* <Route path='men' element={<p>Men</p>}></Route> */}
             <Route path='search' element={<Search />}></Route>
             <Route path='detail' element={<Detail />}></Route>
             <Route path='login' index element={<Login />}></Route>
