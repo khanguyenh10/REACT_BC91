@@ -2,7 +2,6 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import "./assets/sass/main.scss";
 import HomeTemplate from './templates/HomeTemplate';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -12,6 +11,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Carts from './pages/Carts';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import "./assets/sass/main.scss";
 
 createRoot(document.getElementById('root')).render(
   <>

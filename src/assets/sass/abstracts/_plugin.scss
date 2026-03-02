@@ -1,0 +1,39 @@
+%swiper-base {
+    content: "";
+    background-size: contain !important;
+    width: 5rem;
+    height: 5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.swiper-button {
+    &-next,
+    &-prev {
+        svg {
+            display: none;
+        }
+    }
+    &-prev::after {
+        background: url("./shoes/arrow-left.png") no-repeat center;
+        @extend %swiper-base;
+    }
+    &-next::after {
+        background: url("./shoes/arrow-right.png") no-repeat center;
+        @extend %swiper-base;
+    }
+}
+.swiper-pagination-bullet {
+    width: 2rem;
+    height: 2rem;
+    margin: 1rem;
+    background: #d9d9d9;
+    border: 1px solid rgba($color: #000000, $alpha: 0.3);
+}
+@media (max-width: 576px) {
+    .swiper-slide {
+        text-align: center;
+        padding-bottom: 5rem;
+    }
+}

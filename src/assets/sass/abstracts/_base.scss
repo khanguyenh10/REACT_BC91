@@ -4,6 +4,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+img {
+    max-width: 100%;
+    height: auto;
+}
 ul {
     margin-bottom: 0;
     padding: 0;
@@ -11,6 +15,18 @@ ul {
 }
 html {
     font-size: 10px;
+}
+section {
+    padding: 3rem 0;
+}
+input {
+    border: none;
+}
+/* Mobile */
+@media (max-width: 576px) {
+    html {
+        font-size: 8px;
+    }
 }
 a {
     text-decoration: none;

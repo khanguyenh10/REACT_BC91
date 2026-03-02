@@ -1,0 +1,23 @@
+@use "../abstracts/mixin" as *;
+@use "../abstracts/variable" as *;
+.search-filter {
+    title {
+        @include style_text(1.8rem, $fw-medium, ragba(0, 0, 0, 0.6));
+    }
+    button {
+        padding: 1rem;
+        font-size: $text-base;
+        background: $color-secondary;
+        width: 44.3rem;
+        max-width: 100%;
+        &:hover {
+            background: #d6d4d2;
+        }
+        @include mobile() {
+            width: 30rem;
+        }
+        svg {
+            width: 3rem;
+        }
+    }
+}

@@ -1,4 +1,5 @@
 @use "./variable" as *;
+@use "./mixin" as *;
 
 $colors: (
     primary: $color-primary,
@@ -12,10 +13,10 @@ $colors: (
 );
 $fontSizes: (
     base: $text-base,
-    10: $text-xl,
-    20: $text-2xl,
-    30: $text-3xl,
-    40: $text-4xl
+    1: $text-xl,
+    2: $text-2xl,
+    3: $text-3xl,
+    4: $text-4xl
 );
 $fontWeights: (
     thin: $fw-thin,
@@ -40,6 +41,15 @@ $i: 1;
         color: $value !important;
     }
 }
+//--------------- btn ------------------
+@each $color, $value in $sizes {
+    .btn-#{$color} {
+        background-color: $value;
+    }
+    .btn-outline-#{$color} {
+        border: 1px solid $value;
+    }
+}
 //--------------- font-size-------------
 @each $size, $value in $fontSizes {
     .fs-#{$size} {
@@ -50,5 +60,52 @@ $i: 1;
 @each $weight, $value in $fontWeights {
     .fw-#{$weight} {
         font-weight: $value !important;
+    }
+}
+
+.bg-linear-gradient {
+    background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
+}
+.btn-buy {
+    @include style_button(2.4rem, $fw-normal, $color-dark, #9de167, 1rem 2rem, none, 0px, #a7ec6e, $color-dark);
+}
+.products {
+    .product-item {
+        .card-title {
+            font-size: 2.4rem;
+        }
+        .card-price {
+            font-size: 2.4rem;
+            font-weight: $fw-semibold;
+            background: #dedddc;
+            padding: 1rem 2rem;
+        }
+    }
+}
+.hearts {
+    cursor: pointer;
+}
+
+.form {
+    font-family: $font-roboto;
+    label {
+        font-size: 1.8rem;
+    }
+    input {
+        padding: 1rem;
+        font-size: $text-base;
+        background: $color-secondary;
+        &::placeholder {
+            color: $color-dark;
+        }
+        width: 44.3rem;
+        max-width: 100%;
+        @include mobile() {
+            width: 30rem;
+        }
+    }
+    button[type="submit"] {
+        @include style_button(1.4rem, $fw-medium, $color-light, #6200ee, 1rem 2rem, 0, 5rem, #7822f0, $color-light);
+        text-transform: uppercase;
     }
 }

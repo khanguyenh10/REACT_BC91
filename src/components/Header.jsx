@@ -53,12 +53,12 @@ const Header = () => {
                         <div className="container bg-light " >
                             <ul className="navbar-nav me-auto mt-2 mt-lg-0 ">
                                 <li className="nav-item">
-                                    <NavLink to={'/'} className={({ isActive }) => isActive ? "nav-link active" : "nav-link active"} href="#" aria-current="page">
+                                    <NavLink to={'/'} className={({ isActive }) => isActive ? "nav-link active" : "nav-link "} href="#" aria-current="page">
                                         Home
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink to={'/men'} className={({ isActive }) => isActive ? "nav-link active" : "nav-link "} href="#" aria-current="page">
+                                    <NavLink to={'/search'} className={({ isActive }) => isActive ? "nav-link active" : "nav-link "} href="#" aria-current="page">
                                         Search
                                     </NavLink>
                                 </li>

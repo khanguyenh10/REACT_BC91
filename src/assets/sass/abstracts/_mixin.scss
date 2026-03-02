@@ -1,0 +1,50 @@
+@mixin lg-desktop() {
+    @media (max-width: 1400px) {
+        @content;
+    }
+}
+@mixin desktop() {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}
+@mixin lg-tablet() {
+    @media (max-width: 992px) {
+        @content;
+    }
+}
+@mixin tablet() {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+@mixin mobile() {
+    @media (max-width: 576px) {
+        @content;
+    }
+}
+@mixin sm-mobile() {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+@mixin style_text($fz: 16px, $fw: normal, $c: $color-dark) {
+    // tham số mặc định
+    font-size: $fz;
+    font-weight: $fw;
+    color: $c;
+}
+@mixin style_button($fz, $fw, $c, $bg, $padding, $border, $br, $bgHover, $colorHover) {
+    font-size: $fz;
+    font-weight: $fw;
+    color: $c;
+    background: $bg;
+    padding: $padding;
+    border: $border;
+    border-radius: $br;
+    cursor: pointer;
+    &:hover {
+        background: $bgHover;
+        color: $colorHover;
+    }
+}
