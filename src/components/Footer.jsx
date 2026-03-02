@@ -59,6 +59,9 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className='bg-secondary py-3 fs-2 text-center'>
+                © 2022 Cybersoft All Rights Reserved | Design Theme by Trương Tấn Khải.
+            </div>
         </footer>
 
     )
