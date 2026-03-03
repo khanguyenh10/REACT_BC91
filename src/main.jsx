@@ -47,6 +47,11 @@ import DemoChangeNumberRedux from './pages/ReduxDemo/DemoChangeNumberRedux'
 import BTXemChiTietRedux from './pages/ReduxDemo/BTXemChiTietRedux/BTXemChiTietRedux'
 import BaiTapGioHangRedux from './pages/ReduxDemo/BTGioHangRedux/BTGioHangRedux'
 import BTXucXacRedux from './pages/ReduxDemo/BTXucXacRedux/BTXucXacRedux'
+import PageNotFound from './pages/PageNotFound'
+import { renderDynamicRoutes } from '../route'
+import { lazy, Suspense } from 'react'
+const Hooks = lazy(() => import('./pages/Hooks')); // code split
+
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -88,10 +93,9 @@ createRoot(document.getElementById('root')).render(
             <Route path='bt-xem-chi-tiet-redux' element={<BTXemChiTietRedux />}></Route>
             <Route path='bt-gio-hang-redux' element={<BaiTapGioHangRedux />}></Route>
             <Route path='bt-xuc-xac-redux' element={<BTXucXacRedux />}></Route>
-            <Route path='*' element={<Navigate to='/' />}></Route>
+            {/* <Route path='*' element={<Navigate to='/' />}></Route> */}
+            <Route path='hooks' element={<Hooks />}></Route>
           </Route>
-        </Routes>
-        <Routes>
           <Route path='admin' element={<AdminTemplate />}>
             <Route index element={<AdminDashBoard />}></Route>
             <Route path='users' element={<UserManagement />}></Route>
@@ -101,6 +105,8 @@ createRoot(document.getElementById('root')).render(
             <Route path='products/edit/:id' element={<EditProduct />}></Route>
             <Route path='product/:id?' element={<ProductAddNewEdit />}></Route>
           </Route>
+          <Route path='*' element={<PageNotFound />}></Route>
+          {/* {renderDynamicRoutes()} */}
         </Routes>
       </Provider>
     </BrowserRouter>
