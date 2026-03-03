@@ -43,8 +43,9 @@
     border: $border;
     border-radius: $br;
     cursor: pointer;
+    &:active,
     &:hover {
-        background: $bgHover;
-        color: $colorHover;
+        background: $bgHover !important;
+        color: $colorHover !important;
     }
 }

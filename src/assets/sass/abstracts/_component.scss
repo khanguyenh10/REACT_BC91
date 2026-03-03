@@ -69,6 +69,19 @@ $i: 1;
 .btn-buy {
     @include style_button(2.4rem, $fw-normal, $color-dark, #9de167, 1rem 2rem, none, 0px, #a7ec6e, $color-dark);
 }
+.btn-add-to-cart {
+    @include style_button(
+        2.4rem,
+        $fw-medium,
+        $color-light,
+        linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%),
+        1rem 2rem,
+        none,
+        0px,
+        linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d931f3 89.71%),
+        $color-light
+    );
+}
 .products {
     .product-item {
         .card-title {

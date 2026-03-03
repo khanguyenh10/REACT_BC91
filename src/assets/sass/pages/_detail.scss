@@ -1,0 +1,27 @@
+@use "../abstracts/variable" as *;
+.detail-page {
+    .quantity {
+        display: flex;
+        align-items: center;
+        .btn {
+            background: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
+            width: 5rem;
+            height: 5rem;
+            color: #fff;
+            font-size: $text-2xl;
+            border-radius: 0;
+        }
+        input[type="number"] {
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            -moz-appearance: textfield;
+            text-align: center;
+            width: 5rem;
+            outline: none;
+            font-size: $text-3xl;
+        }
+    }
+}

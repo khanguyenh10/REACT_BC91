@@ -8,7 +8,7 @@ const Header = () => {
                 <div className="w-100">
                     <div className='d-flex justify-content-between d-md-none '>
                         <Link className="navbar-brand d-md-none" href="/">
-                            <img src='./shoes/logo.png' />
+                            <img src='/shoes/logo.png' />
                         </Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon bg-white display-5" />
@@ -20,7 +20,7 @@ const Header = () => {
                             <div className="container">
                                 <div className='d-flex py-2 justify-content-between '>
                                     <Link className="navbar-brand d-none d-md-block" href="/">
-                                        <img src='./shoes/logo.png' />
+                                        <img src='/shoes/logo.png' />
                                     </Link>
                                     <ul className='list-unstyled d-flex gap-2 align-items-center'>
                                         <li>
@@ -30,8 +30,8 @@ const Header = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={'/cart'} className='text-decoration-none text-white '>
-                                                <img src='./shoes/cart.png' />
+                                            <Link to={'/carts'} className='text-decoration-none text-white '>
+                                                <img src='/shoes/cart.png' />
                                                 <span className='fs-2 ms-2'>(1)</span>
                                             </Link>
                                         </li>
