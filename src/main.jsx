@@ -2,15 +2,16 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomeTemplate from './templates/HomeTemplate';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
-import Search from './pages/Search';
-import Detail from './pages/Detail';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Profile from './pages/Profile';
-import Carts from './pages/Carts';
+import { lazy } from 'react';
+const HomeTemplate = lazy(() => import('./Templates/HomeTemplate'));
+const Home = lazy(() => import('./pages/Home'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Search = lazy(() => import('./pages/Search'));
+const Detail = lazy(() => import('./pages/Detail'));
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Carts = lazy(() => import('./pages/Carts'));
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';

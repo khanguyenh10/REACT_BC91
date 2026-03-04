@@ -99,7 +99,7 @@ $i: 1;
     cursor: pointer;
 }
 
-.form {
+form {
     font-family: $font-roboto;
     label {
         font-size: 1.8rem;
@@ -107,12 +107,13 @@ $i: 1;
     input {
         padding: 1rem;
         font-size: $text-base;
-        background: $color-secondary;
+        background: $color-light-secondary;
         &::placeholder {
             color: $color-dark;
         }
         width: 44.3rem;
         max-width: 100%;
+        border-radius: 0.5rem;
         @include mobile() {
             width: 30rem;
         }
