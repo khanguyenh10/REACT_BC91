@@ -6,9 +6,9 @@ const FormItem = (props) => {
     return (
         <div className="form-item ">
             <label >{label}</label> <br />
-            <div className=' position-relative'>
+            <div className=' position-relative input-wrapper'>
                 <input className=''{...rest} type={showPassword ? 'text' : 'password'} />
-                {datatype === 'password' && <span className=' position-absolute top-50 translate-middle' style={{ right: 2 }}>
+                {datatype === 'password' && <span className=' position-absolute top-50 translate-middle end-2' style={{ right: 2 }}>
                     <div>
                         {showPassword && <i className="fa fa-eye" onClick={() => setShowPassword(false)} />}
                         {!showPassword && <i className="fa fa-eye-slash" onClick={() => setShowPassword(true)} />}
@@ -16,7 +16,7 @@ const FormItem = (props) => {
 
                 </span>}
             </div>
-            <p className=' text-danger'>{error}</p>
+            {error && <p className=' text-danger'>{error}</p>}
         </div>
     )
 }

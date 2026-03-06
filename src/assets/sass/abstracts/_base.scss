@@ -42,7 +42,10 @@ body {
     color: $color-dark;
     line-height: 1.5;
 }
-
+main {
+    background-color: #fffcfc;
+    padding: 2rem 0;
+}
 /* Large Desktop */
 @media (max-width: 1400px) {
 }
