@@ -1,8 +1,9 @@
 @use "./variable" as *;
 @use "./mixin" as *;
-
+@use "sass:color";
 $colors: (
     primary: $color-primary,
+    light-primary: $color-light-primary,
     secondary: $color-secondary,
     success: $color-success,
     danger: $color-danger,
@@ -42,12 +43,18 @@ $i: 1;
     }
 }
 //--------------- btn ------------------
-@each $color, $value in $sizes {
+@each $color, $value in $colors {
     .btn-#{$color} {
         background-color: $value;
+        &:hover {
+            background-color: color.adjust($value, $lightness: -10%);
+        }
     }
     .btn-outline-#{$color} {
         border: 1px solid $value;
+        &:hover {
+            background-color: color.adjust($value, $lightness: -10%);
+        }
     }
 }
 //--------------- font-size-------------
@@ -62,7 +69,9 @@ $i: 1;
         font-weight: $value !important;
     }
 }
-
+.shadow {
+    box-shadow: 0px 38.49px 71.48px 0px #00000012 !important;
+}
 .bg-linear-gradient {
     background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
 }
@@ -115,7 +124,7 @@ form {
         max-width: 100%;
         border-radius: 0.5rem;
         @include mobile() {
-            width: 30rem;
+            width: 100%;
         }
     }
     button[type="submit"] {

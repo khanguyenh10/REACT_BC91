@@ -1,5 +1,12 @@
 @use "../abstracts/mixin" as *;
 @use "../abstracts/variable" as *;
+.form-search {
+    input {
+        @include mobile() {
+            width: 30rem;
+        }
+    }
+}
 .search-filter {
     title {
         @include style_text(1.8rem, $fw-medium, ragba(0, 0, 0, 0.6));
