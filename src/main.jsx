@@ -29,10 +29,10 @@ createRoot(document.getElementById('root')).render(
             {/* <Route path='men' element={<p>Men</p>}></Route> */}
             <Route path='search' element={<Search />}></Route>
             <Route path='detail/*' element={<Detail />}></Route>
-            <Route path='login' index element={<Login />}></Route>
-            <Route path='register' index element={<Register />}></Route>
-            <Route path='profile' index element={<Profile />}></Route>
-            <Route path='carts' index element={<Carts />}></Route>
+            <Route path='login' element={<Login />}></Route>
+            <Route path='register' element={<Register />}></Route>
+            <Route path='profile' element={<Profile />}></Route>
+            <Route path='carts' element={<Carts />}></Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -13,8 +13,8 @@ const Carts = () => {
                         <table
                             class="table "
                         >
-                            <thead>
-                                <tr>
+                            <thead className=' '>
+                                <tr className=''>
                                     <th scope="col">
                                         <div class="form-check">
                                             <input
@@ -48,23 +48,27 @@ const Carts = () => {
                                     </td>
                                     <td>1</td>
                                     <td>
-                                        <img src='/shoes/thumbnail.png' />
+                                        <img src='/shoes/thumbnail.png' width={85} />
                                     </td>
-                                    <td>100</td>
+                                    <td>Product 1</td>
+                                    <td>1000</td>
                                     <td>
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-3 justify-content-center flex-nowrap">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1">-</span>
+                                                <span class="btn btn-primary input-group-text px-3" id="basic-addon1">+</span>
                                             </div>
                                             <input
-                                                type="text"
-                                                class="form-control"
+                                                type="number"
+                                                class=" text-center bg-secondary mx-3 "
+                                                style={{ width: 100, lineHeight: 1 }}
                                                 placeholder=""
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
+                                                min={1}
+                                                value={1}
                                             />
                                             <div class="input-group-append">
-                                                <span class="input-group-text" id="basic-addon1">+</span>
+                                                <span class="btn btn-primary  input-group-text px-3" id="basic-addon1">-</span>
                                             </div>
                                         </div>
                                     </td>
@@ -72,9 +76,9 @@ const Carts = () => {
                                         1000
                                     </td>
                                     <td>
-                                        <div className='d-flex gap-4'>
-                                            <button className='btn btn-primary fw-medium'>Edit</button>
-                                            <button className='btn btn-danger fw-medium'>Delete</button>
+                                        <div className='d-flex gap-4 justify-content-center'>
+                                            <button className='btn btn-primary fw-medium  fs-md px-4  text-uppercase shadow'>Edit</button>
+                                            <button className='btn btn-danger fw-medium fs-md px-4 text-uppercase shadow'>Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -82,7 +86,9 @@ const Carts = () => {
                             </tbody>
                         </table>
                     </div>
-
+                    <div className=' text-end me-md-5'>
+                        <button className=' btn btn-warning fs-md fw-medium text-white text-uppercase shadow me-md-5'> Submit order </button>
+                    </div>
                 </div>
             </div>
         </div>

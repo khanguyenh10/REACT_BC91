@@ -2,6 +2,7 @@
 $color-primary: #6200ee;
 $color-light-primary: #1877f2;
 $color-secondary: #dedddc;
+$color-dark-secondary: #d9d9d9;
 $color-light-secondary: #21212114;
 $color-success: #1ed90e;
 $color-danger: #fc0303;
@@ -16,11 +17,12 @@ $font-inter: "Inter", sans-serif;
 $font-roboto: "Roboto", sans-serif;
 
 //font-size
+$text-xs: 1rem;
+$text-sm: 1.2rem;
+$text-md: 1.4rem;
+$text-lg: 1.6rem;
 $text-base: 1.6rem;
-$text-sm: 1.4rem;
-$text-md: 1.8rem;
-$text-lg: 2rem;
-$text-xl: 1rem;
+$text-xl: 1.8rem;
 $text-2xl: 2rem;
 $text-3xl: 3rem;
 $text-4xl: 4rem;
