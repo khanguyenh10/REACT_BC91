@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import svReducer from "./reducer/svReducer";
+import userReducer from "./reducer/userReducer";
+import { useReducer } from "react";
 
 export const store = configureStore({
     reducer: {
-        // user: userReducer
-        svReducer
+        userReducer,
+        // svReducer
     }
 });

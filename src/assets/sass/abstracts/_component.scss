@@ -154,6 +154,9 @@ form {
     button[type="submit"] {
         @include style_button(1.4rem, $fw-medium, $color-light, #6200ee, 1rem 2rem, 0, 5rem, #7822f0, $color-light);
         text-transform: uppercase;
+        &:disabled {
+            filter: grayscale(0.5);
+        }
     }
     .form-check-input:focus,
     .form-check-input:checked {
