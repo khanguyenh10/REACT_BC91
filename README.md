@@ -12,6 +12,23 @@ Bao gồm 6 trang là index, search, detail, login, register, profile, carts
 ```js
  npm install @reduxjs/toolkit react-redux
 ```
+## AXIOS API
+```
+npm install axios
+```
+## Toastify
+1. cài đặt
+```
+npm install react-toastify
+```
+2. sử dụng
+```js
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// trong App
+<ToastContainer />
+```
+
 ## SASS
 1. cài đặt
 ```js

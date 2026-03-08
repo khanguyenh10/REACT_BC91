@@ -1,24 +1,22 @@
-import React from 'react'
+import React, { memo } from 'react'
 import HeadingTitle from './HeadingTitle'
 import { Link } from 'react-router-dom'
 import ProductItem from './ProductItem'
+import { limitText } from '../util/textUtil'
 
-const Products = () => {
+const Products = (props) => {
+    const { products = [] } = props;
     return (
         <section className='products'>
             <div className="row p-md-5 g-md-5">
-                <div className="col-md-6 col-lg-4">
-                    <ProductItem imgSrc='/shoes/thumbnail.png' title={'Adidas Prophere'} shortDes={'short descript'} price={'85$'} to={'/detail/1'} />
-                </div>
-                <div className="col-md-6 col-lg-4">
-                    <ProductItem imgSrc='/shoes/thumbnail.png' title={'Adidas Prophere'} shortDes={'short descript'} price={'85$'} to={'/detail/2'} />
-                </div>
-                <div className="col-md-6 col-lg-4">
-                    <ProductItem imgSrc='/shoes/thumbnail.png' title={'Adidas Prophere'} shortDes={'short descript'} price={'85$'} to={'/detail/3'} />
-                </div>
+                {products.map(product =>
+                    <div className="col-md-6 col-lg-4" key={product.id}>
+                        <ProductItem imgSrc={product.image} title={product.name} shortDes={limitText(product.shortDescription, 50)} price={product.price} to={`/detail/${product.id}`} />
+                    </div>
+                )}
             </div>
         </section >
     )
 }
 
-export default Products
+export default memo(Products)

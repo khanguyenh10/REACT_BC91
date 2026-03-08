@@ -17,18 +17,21 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import "react-toastify/dist/ReactToastify.css";
 import "./assets/sass/main.scss";
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')).render(
   <>
     <BrowserRouter>
+      <ToastContainer />
       <Provider store={store}>
         <Routes>
           <Route path="" element={<HomeTemplate />} >
             <Route index element={<Home />}></Route>
             {/* <Route path='men' element={<p>Men</p>}></Route> */}
             <Route path='search' element={<Search />}></Route>
-            <Route path='detail/*' element={<Detail />}></Route>
+            <Route path='detail/:id' element={<Detail />}></Route>
             <Route path='login' element={<Login />}></Route>
             <Route path='register' element={<Register />}></Route>
             <Route path='profile' element={<Profile />}></Route>

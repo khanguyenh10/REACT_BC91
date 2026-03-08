@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import ShoeFavorite from './ShoeFavorite';
 
@@ -12,7 +12,7 @@ const ProductItem = (props) => {
                 {/* <Link to={'/detail/1'}> */}
                 <h5 className="card-title fw-light">{title}</h5>
                 {/* </Link> */}
-                <p className="card-text fs-2 fw-light" style={{ color: '#CbC9C9' }}>{shortDes}...</p>
+                <p className="card-text fs-2 fw-light" style={{ color: '#CbC9C9' }}>{shortDes}</p>
 
             </div>
             <div className='card-footer p-0 d-flex'>
@@ -23,4 +23,4 @@ const ProductItem = (props) => {
     )
 }
 
-export default ProductItem
+export default memo(ProductItem);
