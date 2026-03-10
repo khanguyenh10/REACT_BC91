@@ -50,6 +50,9 @@ import BTXucXacRedux from './pages/ReduxDemo/BTXucXacRedux/BTXucXacRedux'
 import PageNotFound from './pages/PageNotFound'
 import { renderDynamicRoutes } from '../route'
 import { lazy, Suspense } from 'react'
+import HookToiUu from './pages/HookToiUu/HookToiUu'
+import DemoCustomHook from './pages/CustomHook/DemoCustomHook'
+import HOCDemo from './pages/HOCDemo/HOCDemo'
 const Hooks = lazy(() => import('./pages/Hooks')); // code split
 
 
@@ -95,6 +98,9 @@ createRoot(document.getElementById('root')).render(
             <Route path='bt-xuc-xac-redux' element={<BTXucXacRedux />}></Route>
             {/* <Route path='*' element={<Navigate to='/' />}></Route> */}
             <Route path='hooks' element={<Hooks />}></Route>
+            <Route path='hooks-toi-uu' element={<HookToiUu />}></Route>
+            <Route path='custom-hook' element={<DemoCustomHook />}></Route>
+            <Route path='hoc' element={<HOCDemo />}></Route>
           </Route>
           <Route path='admin' element={<AdminTemplate />}>
             <Route index element={<AdminDashBoard />}></Route>

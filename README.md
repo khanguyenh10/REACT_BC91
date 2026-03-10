@@ -48,3 +48,18 @@ npm i formik yup
 
 npm i @reduxjs/toolkit
 npm i react-redux
+
+
+# react  19
+- đã có plugin tối ưu cho useMemo, useCallback
+- npm install -D babel-plugin-react-compiler
+```js
+export default defineConfig({
+  plugins: [react({
+    babel: {
+      plugins: ["babel-plugin-react-compiler"],
+    },
+  })],
+})
+
+```

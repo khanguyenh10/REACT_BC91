@@ -50,6 +50,15 @@ const HeaderHome = () => {
 
                         </div>
                     </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hook</a>
+                        <div className="dropdown-menu" aria-labelledby="dropdownId">
+                            <NavLink className="dropdown-item" to="/hooks-toi-uu">Hook tối ưu</NavLink>
+                            <NavLink className="dropdown-item" to="/custom-hook">Custom hook</NavLink>
+                            <NavLink className="dropdown-item" to="/hoc">HOC</NavLink>
+
+                        </div>
+                    </li>
                 </ul>
                 <form className="d-flex my-2 my-lg-0">
                     <input className="form-control me-sm-2" type="text" placeholder="Search" />
