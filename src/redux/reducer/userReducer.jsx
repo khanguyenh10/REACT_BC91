@@ -5,11 +5,13 @@ import { getData, saveData } from "../../util/saveUtil";
 const getUserInfo = () => {
     let userInfo = {
         accessToken: '',
+        email: '',
         isLogined: false,
     };
     if (getData('userInfo')) {
         let userInfoData = getData('userInfo');
         userInfo.accessToken = userInfoData.accessToken;
+        userInfo.email = userInfoData.email;
         userInfo.isLogined = Boolean(userInfoData.isLogined);
     }
     return userInfo;
@@ -21,13 +23,15 @@ const userSlice = createSlice({
     reducers: {
         signIn: (state, action) => {
             state.accessToken = action.payload.accessToken;
-            state.isLogined = action.payload.isLogined;
+            state.email = action.payload.email;
+            state.isLogined = true;
             saveData(state, 'userInfo');
         },
         signOut: (state, action) => {
             state.accessToken = '';
+            state.email = '';
             state.isLogined = false;
-            saveData(state, 'userInfo');
+            localStorage.removeItem('userInfo');
         },
         updateSV: (state, action) => {
             const sv = state.find(sv => sv.maSV === action.payload.maSV)

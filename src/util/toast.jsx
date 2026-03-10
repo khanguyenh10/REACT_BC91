@@ -1,25 +1,19 @@
 import { toast } from "react-toastify";
 
-let id;
-
-export const showLoading = () => {
-    id = toast.loading("Đang đăng nhập...", {
-        // position: "top-center",
+export const toastPromise = (promise, message = 'Xử lý') => {
+    return toast.promise(promise, {
+        pending: `${message}...`,
+        success: `${message} thành công`,
+        error: {
+            render({ data }) {
+                let messageError = data?.response.data.message;
+                // data chính là error
+                return messageError ? messageError : data?.message;
+            }
+        }
     });
-}
-export const showStatusSuccess = (message = 'Xử lý') => {
-    toast.update(id, {
-        render: `${message} Thành công`,
-        type: "success",
-        isLoading: false,
-        autoClose: 2000
-    });
-}
-export const showStatusError = (message = 'Xử lý') => {
-    toast.update(id, {
-        render: `${message} Thất bại`,
-        type: "error",
-        isLoading: false,
-        autoClose: 2000
-    });
-}
+};
+export const toastError = (data) => {
+    let messageError = data?.response.data.message;
+    toast.error(messageError ? messageError : data?.message);
+};

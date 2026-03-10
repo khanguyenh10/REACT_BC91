@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormItem from '../components/FormItem'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
-import { showLoading, showStatusError } from '../util/toast';
 import { signInApi } from '../api/userApi';
 import { signIn } from '../redux/reducer/userReducer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toastPromise } from '../util/toast';
 const Login = () => {
+    const userReducer = useSelector(rootState => rootState.userReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userForm = useFormik({
@@ -20,18 +21,19 @@ const Login = () => {
             password: Yup.string().required('Mật khẩu không được để trống').matches('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})', 'Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số và ký tự đặc biệt'),
         }),
         onSubmit: async (values) => {
-            showLoading();
-            console.log(values);
-            try {
-                let response = await signInApi(values);
-                const action = signIn(response.data.content);
-                dispatch(action);
+            let response = await toastPromise(signInApi(values), 'Đăng nhập');
+            const action = signIn(response.data.content);
+            dispatch(action);
+            setTimeout(() => {
                 navigate('/');
-            } catch (error) {
-                showStatusError(error.response.data.message);
-            }
+            }, 1000);
         }
     })
+    useEffect(() => {
+        if (userReducer.isLogined) {
+            navigate('/');
+        }
+    }, [userReducer.isLogined])
     return (
         <div className='login-page'>
             <div className="container">

@@ -1,7 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, Links, NavLink } from 'react-router-dom'
+import { signOut } from '../redux/reducer/userReducer';
 
 const Header = () => {
+    const userReducer = useSelector(rootState => rootState.userReducer);
+    const dispatch = useDispatch();
+    const { isLogined, email } = userReducer;
+
+
+    //logout
+    const handleLogout = () => {
+        const action = signOut();
+        dispatch(action);
+    }
+    const renderNavigate = () => {
+        if (isLogined) {
+            return <li>
+                <Link to={'/profile'} className='text-decoration-underline text-white '>
+                    <span className='fw-light ms-2'>{email}</span>
+                </Link>
+                <a href="#" onClick={handleLogout} className='text-decoration-underline text-white '>
+                    <span className='fw-light ms-2'>Logout</span>
+                </a>
+            </li>
+        } else {
+            return <>
+
+                <li>
+                    <Link to={'/login'} className='text-decoration-none text-white '>
+                        <span className='fw-light ms-2'>Login</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to={'/register'} className='text-decoration-none text-white '>
+                        <span className='fw-light ms-2'>Register</span>
+                    </Link>
+                </li>
+            </>
+        }
+    }
     return (
         <header className='header'>
             <nav className="navbar navbar-expand-sm navbar-light bg-transparent pt-0 pb-3">
@@ -35,16 +73,8 @@ const Header = () => {
                                                 <span className='fs-2 ms-2'>(1)</span>
                                             </Link>
                                         </li>
-                                        <li>
-                                            <Link to={'/login'} className='text-decoration-none text-white '>
-                                                <span className='fw-light ms-2'>Login</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to={'/register'} className='text-decoration-none text-white '>
-                                                <span className='fw-light ms-2'>Register</span>
-                                            </Link>
-                                        </li>
+                                        {renderNavigate()}
+
                                     </ul>
                                 </div>
                             </div>

@@ -1,11 +1,18 @@
 import axiosClient from "./axiosClient";
 
-export const getUserProductFavorites = () => {
+export const getUserProductFavoritesApi = () => {
     return axiosClient.get('/Users/Product/favorites', {
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-        }
+        // headers: {
+        //     'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).accessToken
+        // }
     });
+}
+export const getProfileApi = () => {
+    return axiosClient.post('/Users/getProfile');
+}
+
+export const updateProfileApi = (data) => {
+    return axiosClient.post('/Users/updateProfile', data);
 }
 export const signInApi = (user) => {
     return axiosClient.post('/Users/signin', user);

@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { showLoading, showStatusError, showStatusSuccess } from '../util/toast';
 import { signUpApi } from '../api/userApi';
+import { toastPromise } from '../util/toast';
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -26,24 +26,18 @@ const Register = () => {
             phone: Yup.string().required('Số diện thoại ko được để trống').matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, 'Số diện thoại không hợp lệ'),
         }),
         onSubmit: async (values) => {
-            showLoading();
-            console.log(values);
-            try {
-                let response = await signUpApi({
-                    email: values.email,
-                    name: values.name,
-                    password: values.password,
-                    phone: values.phone,
-                    gender: values.gender
-                });
-                console.log(response)
-                showStatusSuccess('Đăng ký');
-                setTimeout(() => {
-                    navigate('/login');
-                })
-            } catch (error) {
-                showStatusError(error.response.data.message);
+            const data = {
+                email: values.email,
+                name: values.name,
+                password: values.password,
+                phone: values.phone,
+                gender: values.gender
             }
+            let response = await toastPromise(signUpApi(data));
+            console.log(response)
+            setTimeout(() => {
+                navigate('/login');
+            })
         }
     })
     console.log(userForm.values)

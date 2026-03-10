@@ -1,16 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeadingTitle from '../components/HeadingTitle'
 import FormItem from '../components/FormItem'
 import Line from '../components/Line'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { toastError, toastPromise } from '../util/toast'
+import { getProfileApi, updateProfileApi } from '../api/userApi'
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
 
 const Profile = () => {
+    const userReducer = useSelector(rootState => rootState.userReducer);
+    const { isLogined, accessToken } = userReducer;
+    const profileForm = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            ordersHistory: [],
+            email: [],
+            name: '',
+            phone: '',
+            password: '',
+            gender: 'true'
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().required('Email không được để trống').email('Email không hợp lệ'),
+            name: Yup.string().required('Tên không được để trống'),
+            password: Yup.string().matches('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})', 'Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số và ký tự đặc biệt'),
+            phone: Yup.string().required('Số điện thoại ko được để trống').matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, 'Số diện thoại không hợp lệ'),
+        }),
+        onSubmit: async (values) => {
+            let response = await toastPromise(updateProfileApi(values));
+        }
+    })
+
+    const [profile, setProfile] = useState();
+    const navigate = useNavigate();
+
+    //lấy infoProfile
+    useEffect(() => {
+        if (accessToken) {
+            const getProfile = async () => {
+                try {
+                    let response = await getProfileApi();
+                    profileForm.setValues({ ...response.data.content, password: response.data.content.password ? response.data.content.password : '' });
+                } catch (error) {
+                    toastError(error);
+                }
+
+            }
+            getProfile();
+        }
+    }, [accessToken])
+    //kiểm tra đã đăng nhập chưa
+    useEffect(() => {
+        if (!isLogined) {
+            navigate('/login');
+        }
+    }, [isLogined])
     return (
         <div className='container'>
             <div className="row">
                 <div className="col-md-6">
                     <HeadingTitle title={'Profile'} />
                 </div>
-                <form action="" className='mt-5'>
+                <form action="" className='mt-5' onSubmit={profileForm.handleSubmit} >
                     <div className="row">
                         <div className="col-md-2">
                             <img src="/shoes/avatar.png" alt="" />
@@ -18,16 +71,20 @@ const Profile = () => {
                         <div className="col-md-10">
                             <div className="row ">
                                 <div className="col-md-6  mb-4">
-                                    <FormItem label='Email' type='email' name="email" placeholder='email' />
+                                    <FormItem label='Email' type='email' name="email" placeholder='email' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.email} />
+                                    <p className='text-danger'>{profileForm.errors.email}</p>
                                 </div>
                                 <div className="col-md-6  mb-4">
-                                    <FormItem label='Name' type='text' name="name" placeholder='name' />
+                                    <FormItem label='Name' type='text' name="name" placeholder='name' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.name} />
+                                    <p className='text-danger'>{profileForm.errors.name}</p>
                                 </div>
                                 <div className="col-md-6 mb-4">
-                                    <FormItem label='Phone' type='tel' name="phone" placeholder='phone' />
+                                    <FormItem label='Phone' type='tel' name="phone" placeholder='phone' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.phone} />
+                                    <p className='text-danger'>{profileForm.errors.phone}</p>
                                 </div>
                                 <div className="col-md-6 mb-4">
-                                    <FormItem datatype='password' label='Password' type='password' name="password" placeholder='password' />
+                                    <FormItem label='Password' type='text' name="password" placeholder='password' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.password} />
+                                    <p className='text-danger'>{profileForm.errors.password}</p>
                                     <div className="row mt-4">
                                         <div className="col-md-8">
                                             <div className='d-flex gap-4'>
@@ -47,7 +104,7 @@ const Profile = () => {
                                             </div>
                                         </div>
                                         <div className="col-md-4">
-                                            <button type='submit' className='shadow'>Submit</button>
+                                            <button type='submit' className='shadow' disabled={!profileForm.isValid || profileForm.isSubmitting}>Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -73,10 +130,10 @@ const Profile = () => {
                                     + Orders have been placed on 09 - 19 - 2020
                                 </h3>
                                 <div
-                                    class="table-responsive"
+                                    className="table-responsive"
                                 >
                                     <table
-                                        class="table "
+                                        className="table "
                                     >
                                         <thead className=' '>
                                             <tr className=''>
@@ -89,7 +146,7 @@ const Profile = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="">
+                                            <tr className="">
                                                 <td>1</td>
                                                 <td>
                                                     <img src='/shoes/thumbnail.png' width={85} />
@@ -99,7 +156,7 @@ const Profile = () => {
                                                 <td>
                                                     <input
                                                         type="number"
-                                                        class=" text-center bg-secondary mx-3 "
+                                                        className=" text-center bg-secondary mx-3 "
                                                         style={{ width: 100, lineHeight: 1 }}
                                                         placeholder=""
                                                         aria-label="Username"
@@ -123,10 +180,10 @@ const Profile = () => {
                                     + Orders have been placed on 09 - 19 - 2020
                                 </h3>
                                 <div
-                                    class="table-responsive"
+                                    className="table-responsive"
                                 >
                                     <table
-                                        class="table "
+                                        className="table "
                                     >
                                         <thead className=' '>
                                             <tr className=''>
@@ -139,7 +196,7 @@ const Profile = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="">
+                                            <tr className="">
                                                 <td>1</td>
                                                 <td>
                                                     <img src='/shoes/thumbnail.png' width={85} />
@@ -149,7 +206,7 @@ const Profile = () => {
                                                 <td>
                                                     <input
                                                         type="number"
-                                                        class=" text-center bg-secondary mx-3 "
+                                                        className=" text-center bg-secondary mx-3 "
                                                         style={{ width: 100, lineHeight: 1 }}
                                                         placeholder=""
                                                         aria-label="Username"
