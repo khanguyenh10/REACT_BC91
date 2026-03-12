@@ -53,6 +53,11 @@ import { lazy, Suspense } from 'react'
 import HookToiUu from './pages/HookToiUu/HookToiUu'
 import DemoCustomHook from './pages/CustomHook/DemoCustomHook'
 import HOCDemo from './pages/HOCDemo/HOCDemo'
+import ContainerDemo from './pages/HOCDemo/ContainerDemo'
+import DrawerContainer from './pages/HOC/DrawerContainer'
+import ResponsiveComponent from './pages/HOC/ResponsiveComponent'
+import DesktopHome from './pages/HomePage/DesktopHome'
+import MobileHome from './pages/HomePage/MobileHome'
 const Hooks = lazy(() => import('./pages/Hooks')); // code split
 
 
@@ -60,6 +65,7 @@ createRoot(document.getElementById('root')).render(
   <>
     <BrowserRouter>
       <Provider store={store}>
+        <DrawerContainer />
         <Routes>
           <Route path='' element={<HomeTemplate />}>
             <Route index element={<GetAllProductPage />} ></Route>
@@ -100,7 +106,9 @@ createRoot(document.getElementById('root')).render(
             <Route path='hooks' element={<Hooks />}></Route>
             <Route path='hooks-toi-uu' element={<HookToiUu />}></Route>
             <Route path='custom-hook' element={<DemoCustomHook />}></Route>
-            <Route path='hoc' element={<HOCDemo />}></Route>
+            <Route path='hoc-demo' element={<HOCDemo />}></Route>
+            <Route path='container-component-demo' element={<ContainerDemo />}></Route>
+            <Route path='responsive-demo' element={<ResponsiveComponent Component={<DesktopHome />} MobileComponent={<MobileHome />} />}></Route>
           </Route>
           <Route path='admin' element={<AdminTemplate />}>
             <Route index element={<AdminDashBoard />}></Route>

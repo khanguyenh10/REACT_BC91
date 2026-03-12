@@ -26,8 +26,8 @@ const DemoChangeCarRedux = () => {
     return (
         <div>
             <h3>Change color car</h3>
-            <div className='d-flex gap-2 align-items-center'>
-                <img src={imgCarReducer} width={500} />
+            <div className='d-flex gap-2 align-items-center flex-wrap'>
+                <img src={imgCarReducer} width={500} className=' mw-100' />
                 <div className='d-flex gap-2'>
                     <button className='btn btn-danger' onClick={() => changeCarColor('red')}>Red color</button>
                     <button className='btn btn-secondary' onClick={() => changeCarColor('silver')}>Silver color</button>

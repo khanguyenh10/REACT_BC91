@@ -55,10 +55,18 @@ const HeaderHome = () => {
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
                             <NavLink className="dropdown-item" to="/hooks-toi-uu">Hook tối ưu</NavLink>
                             <NavLink className="dropdown-item" to="/custom-hook">Custom hook</NavLink>
-                            <NavLink className="dropdown-item" to="/hoc">HOC</NavLink>
 
                         </div>
                     </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">HOC</a>
+                        <div className="dropdown-menu" aria-labelledby="dropdownId">
+                            <NavLink className="dropdown-item" to="/hoc-demo">HOC Demo</NavLink>
+                            <NavLink className="dropdown-item" to="/container-component-demo">Container component Demo</NavLink>
+                            <NavLink className="dropdown-item" to="/responsive-demo">Responsive Demo</NavLink>
+                        </div>
+                    </li>
+
                 </ul>
                 <form className="d-flex my-2 my-lg-0">
                     <input className="form-control me-sm-2" type="text" placeholder="Search" />

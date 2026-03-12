@@ -1,9 +1,10 @@
 
 
 import React, { useState } from 'react'
-import ModalHOC from './ModalHOC';
 import Register from '../Register';
 import Login from '../Login';
+import ModalHOC from '../HOC/ModalHOC';
+
 
 /*
   Thay vì truyên tham số function thì có thể truyền jsxElement
