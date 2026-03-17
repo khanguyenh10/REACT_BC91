@@ -1,7 +1,7 @@
 import React from 'react'
 import { HeartEmptyIcon, HeartIcon } from './icons/main';
 
-const ShoeFavorite = (props) => {
+const ShoeFavoriteIcon = (props) => {
     const { isLiked } = props;
     return (
         <div className='hearts text-end'>
@@ -11,4 +11,4 @@ const ShoeFavorite = (props) => {
     )
 }
 
-export default ShoeFavorite
+export default ShoeFavoriteIcon

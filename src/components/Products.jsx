@@ -14,6 +14,7 @@ const Products = (props) => {
                         <ProductItem imgSrc={product.image} title={product.name} shortDes={limitText(product.shortDescription, 50)} price={product.price} to={`/detail/${product.id}`} />
                     </div>
                 )}
+                {products.length === 0 && <div className='col-md-12 text-center'>Not found</div>}
             </div>
         </section >
     )

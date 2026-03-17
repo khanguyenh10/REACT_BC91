@@ -8,6 +8,7 @@ import { toastError, toastPromise } from '../util/toast'
 import { getProfileApi, updateProfileApi } from '../api/userApi'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
+import ShoesFavorite from '../components/ShoesFavorite'
 
 const Profile = () => {
     const userReducer = useSelector(rootState => rootState.userReducer);
@@ -19,17 +20,17 @@ const Profile = () => {
             email: [],
             name: '',
             phone: '',
-            password: '',
-            gender: 'true'
+            // password: '',
+            gender: true
         },
         validationSchema: Yup.object({
             email: Yup.string().required('Email không được để trống').email('Email không hợp lệ'),
             name: Yup.string().required('Tên không được để trống'),
-            password: Yup.string().matches('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})', 'Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số và ký tự đặc biệt'),
+            // password: Yup.string().matches('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})', 'Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số và ký tự đặc biệt'),
             phone: Yup.string().required('Số điện thoại ko được để trống').matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, 'Số diện thoại không hợp lệ'),
         }),
         onSubmit: async (values) => {
-            let response = await toastPromise(updateProfileApi(values));
+            await toastPromise(updateProfileApi(values));
         }
     })
 
@@ -56,7 +57,9 @@ const Profile = () => {
         if (!isLogined) {
             navigate('/login');
         }
-    }, [isLogined])
+    }, [isLogined]);
+
+
     return (
         <div className='container'>
             <div className="row">
@@ -71,7 +74,7 @@ const Profile = () => {
                         <div className="col-md-10">
                             <div className="row ">
                                 <div className="col-md-6  mb-4">
-                                    <FormItem label='Email' type='email' name="email" placeholder='email' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.email} />
+                                    <FormItem label='Email' type='email' name="email" placeholder='email' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.email} disabled />
                                     <p className='text-danger'>{profileForm.errors.email}</p>
                                 </div>
                                 <div className="col-md-6  mb-4">
@@ -83,20 +86,22 @@ const Profile = () => {
                                     <p className='text-danger'>{profileForm.errors.phone}</p>
                                 </div>
                                 <div className="col-md-6 mb-4">
-                                    <FormItem label='Password' type='text' name="password" placeholder='password' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.password} />
+                                    {/* <FormItem label='Password' type='text' name="password" placeholder='password' onChange={profileForm.handleChange} onBlur={profileForm.handleBlur} value={profileForm.values.password} /> */}
                                     <p className='text-danger'>{profileForm.errors.password}</p>
                                     <div className="row mt-4">
                                         <div className="col-md-8">
                                             <div className='d-flex gap-4'>
                                                 <label className="form-label">Gender</label>
                                                 <div className="form-check d-flex flex-column">
-                                                    <input className="form-check-input" type="radio" name="gender" id="Male" />
+                                                    <input className="form-check-input" type="radio" name="gender" id="Female"
+                                                        value={true} checked={Boolean(profileForm.values.gender) == true} onChange={profileForm.handleChange} />
                                                     <label className="form-check-label" htmlFor="Male" style={{ fontWeight: 400, marginLeft: '-3rem', marginTop: '1rem' }}>
                                                         Male
                                                     </label>
                                                 </div>
                                                 <div className="form-check d-flex flex-column">
-                                                    <input className="form-check-input" type="radio" name="gender" id="Female" defaultChecked />
+                                                    <input className="form-check-input" type="radio" name="gender" id="Female"
+                                                        value={false} checked={Boolean(profileForm.values.gender) == false} onChange={profileForm.handleChange} />
                                                     <label className="form-check-label" htmlFor="Female" style={{ fontWeight: 400, marginLeft: '-3rem', marginTop: '1rem' }}>
                                                         Female
                                                     </label>
@@ -245,8 +250,9 @@ const Profile = () => {
                         </nav>
 
                     </div>
-                    <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                    <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                    <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <ShoesFavorite />
+                    </div>
                 </div>
             </div>
 

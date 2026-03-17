@@ -1,7 +1,7 @@
 import axiosClient from "./axiosClient";
 
 export const getUserProductFavoritesApi = () => {
-    return axiosClient.get('/Users/Product/favorites', {
+    return axiosClient.get('/Users/getproductfavorite', {
         // headers: {
         //     'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).accessToken
         // }

@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import { Link, NavLink } from 'react-router-dom';
-import ShoeFavorite from './ShoeFavorite';
+import ShoeFavoriteIcon from './ShoeFavoriteIcon';
 
 const ProductItem = (props) => {
     const { imgSrc, title, shortDes, price, to } = props;
     return (
         <div className="card product-item">
             <div className="card-body  p-md-5 pb-md-2">
-                <ShoeFavorite />
+                <ShoeFavoriteIcon />
                 <img src={imgSrc} className="card-img-top" alt="..." />
                 {/* <Link to={'/detail/1'}> */}
                 <h5 className="card-title fw-light">{title}</h5>
