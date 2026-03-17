@@ -14,6 +14,10 @@ export const toastPromise = (promise, message = 'Xử lý') => {
     });
 };
 export const toastError = (data) => {
-    let messageError = data?.response.data.message;
+    let messageError = data?.response?.data?.message;
+    console.log('messageError', messageError);
     toast.error(messageError ? messageError : data?.message);
+    if (data?.status === 401) {
+        localStorage.removeItem('userInfo');
+    }
 };

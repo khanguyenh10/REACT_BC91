@@ -1,10 +1,18 @@
 import axiosClient from "./axiosClient";
 
-export const getUserProductFavoritesApi = () => {
+export const getProductFavoritesApi = () => {
     return axiosClient.get('/Users/getproductfavorite', {
         // headers: {
         //     'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('userInfo')).accessToken
         // }
+    });
+}
+export const getLikeApi = (productId) => {
+    return axiosClient.get(`/Users/like?productId=${productId}`, {
+    });
+}
+export const getUnLikeApi = (productId) => {
+    return axiosClient.get(`/Users/unlike?productId=${productId}`, {
     });
 }
 export const getProfileApi = () => {

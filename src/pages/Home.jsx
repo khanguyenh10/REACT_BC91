@@ -4,22 +4,21 @@ import Products from '../components/Products'
 import HeadingTitle from '../components/HeadingTitle'
 import axios from 'axios'
 import { getProductApi } from '../api/productApi'
+import useFetchData from '../hooks/useFetchData'
+import RequestHandler from '../components/RequestHandler'
+import useRedux from '../hooks/useRedux'
+import { renderProductsFavorite } from '../redux/reducer/userReducer'
+import { getProductFavoritesApi } from '../api/userApi'
 
 const Home = () => {
-  const [products, setProducts] = React.useState([]);
+  const { data: products, isLoading, error } = useFetchData(getProductApi);
+  const { data: productsFavorite, isLoading: isLoadingFavorite, error: errorFavorite } = useFetchData(getProductFavoritesApi, true);
+  const { dispatch } = useRedux();
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        let response = await getProductApi();
-        setProducts(response.data.content.slice(0, 18));
-      } catch (error) {
-
-      }
-
+    if (productsFavorite) {
+      dispatch(renderProductsFavorite(productsFavorite));
     }
-    getProducts();
-  }, [])
-  console.log(products);
+  }, [productsFavorite])
   return (
     <div className='home-page'>
       <div className="container">
@@ -29,7 +28,9 @@ const Home = () => {
             <HeadingTitle title={'Product Feature'} />
           </div>
         </div>
-        <Products products={products} />
+        <RequestHandler isLoading={isLoading || isLoadingFavorite} error={error || errorFavorite}>
+          <Products products={products?.splice(0, 18)} productsFavorite={productsFavorite} />
+        </RequestHandler>
       </div>
     </div>
   )

@@ -93,3 +93,25 @@ export default () => {
     </Swiper>
   );
 };
+```
+## Plugin tối ưu render ko cần dùng useMemo, useCallback, memo
+1. install
+```js
+npm install -D babel-plugin-react-compiler
+```
+2. setup
+``` js
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: ['babel-plugin-react-compiler']
+      }
+    })
+  ]
+})
+```

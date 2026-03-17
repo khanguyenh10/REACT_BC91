@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import HeadingTitle from '../components/HeadingTitle'
 import FormItem from '../components/FormItem'
-import Line from '../components/Line'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toastError, toastPromise } from '../util/toast'
@@ -9,6 +8,7 @@ import { getProfileApi, updateProfileApi } from '../api/userApi'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import ShoesFavorite from '../components/ShoesFavorite'
+import Line from '../components/ui/Line'
 
 const Profile = () => {
     const userReducer = useSelector(rootState => rootState.userReducer);

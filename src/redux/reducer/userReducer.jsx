@@ -7,6 +7,7 @@ const getUserInfo = () => {
         accessToken: '',
         email: '',
         isLogined: false,
+        productsFavorite: [],
     };
     if (getData('userInfo')) {
         let userInfoData = getData('userInfo');
@@ -33,32 +34,18 @@ const userSlice = createSlice({
             state.isLogined = false;
             localStorage.removeItem('userInfo');
         },
-        updateSV: (state, action) => {
-            const sv = state.find(sv => sv.maSV === action.payload.maSV)
-            if (sv) {
-                sv.hoTenSV = action.payload.hoTenSV;
-                sv.email = action.payload.email;
-                sv.soDT = action.payload.soDT;
-            }
-            saveListSV(state);
+        renderProductsFavorite: (state, action) => {
+            state.productsFavorite = action.payload.productsFavorite;
         },
-        xoaSV: (state, action) => {
-            // kiểm tra mã SV có tồn tại chưa
-            console.log("maSV: " + action.payload)
-            const index = state.findIndex(sv => sv.maSV === action.payload)
-            if (index !== -1) {
-                state.splice(index, 1)
+        toggleProductFavorite: (state, action) => {
+            const product = state.productsFavorite.find(product => product.id === action.payload.id);
+            if (product) {
+                state.productsFavorite = state.productsFavorite.filter(product => product.id !== action.payload.id);
+            } else {
+                state.productsFavorite.push(action.payload);
             }
-            saveListSV(state);
         },
-        timSV: (state, action) => {
-            if (action.payload) {
-                return state.filter(sv => stringToSlug(sv.hoTenSV).search(stringToSlug(action.payload)) !== -1);
-            }
-            return getListSV();
-
-        }
     }
 })
-export const { signIn, signOut } = userSlice.actions
+export const { signIn, signOut, renderProductsFavorite, toggleProductFavorite } = userSlice.actions
 export default userSlice.reducer;
