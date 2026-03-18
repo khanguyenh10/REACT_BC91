@@ -63,3 +63,8 @@ export default defineConfig({
 })
 
 ```
+
+# ant design
+```js
+npm i antd
+```

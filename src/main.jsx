@@ -58,6 +58,10 @@ import DrawerContainer from './pages/HOC/DrawerContainer'
 import ResponsiveComponent from './pages/HOC/ResponsiveComponent'
 import DesktopHome from './pages/HomePage/DesktopHome'
 import MobileHome from './pages/HomePage/MobileHome'
+import ProductPage from './pages/ReduxThunk/ProductPage'
+import ProductDetail from './pages/ReduxThunk/ProductDetail'
+import LoginPage from './pages/ReduxThunk/LoginPage.jsx/LoginPage'
+import DemoAntd from './pages/Antd/DemoAntd'
 const Hooks = lazy(() => import('./pages/Hooks')); // code split
 
 
@@ -109,6 +113,10 @@ createRoot(document.getElementById('root')).render(
             <Route path='hoc-demo' element={<HOCDemo />}></Route>
             <Route path='container-component-demo' element={<ContainerDemo />}></Route>
             <Route path='responsive-demo' element={<ResponsiveComponent Component={<DesktopHome />} MobileComponent={<MobileHome />} />}></Route>
+            <Route path='redux-thunk' element={<ProductPage />}></Route>
+            <Route path='detail-thunk/:id' element={<ProductDetail />}></Route>
+            <Route path='login-thunk' element={<LoginPage />}></Route>
+            <Route path='ant-design' element={<DemoAntd />}></Route>
           </Route>
           <Route path='admin' element={<AdminTemplate />}>
             <Route index element={<AdminDashBoard />}></Route>

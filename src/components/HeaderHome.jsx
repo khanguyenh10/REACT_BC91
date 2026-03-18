@@ -47,6 +47,8 @@ const HeaderHome = () => {
                             <NavLink className="dropdown-item" to="/bt-xem-chi-tiet-redux">Bài tập xem chi tiết</NavLink>
                             <NavLink className="dropdown-item" to="/bt-gio-hang-redux">Bài tập giỏ hàng redux</NavLink>
                             <NavLink className="dropdown-item" to="/bt-xuc-xac-redux">Bài tập xúc xắc redux</NavLink>
+                            <NavLink className="dropdown-item" to="/redux-thunk">Redux thunk </NavLink>
+                            <NavLink className="dropdown-item" to="/login-thunk">login thunk </NavLink>
 
                         </div>
                     </li>
@@ -66,7 +68,12 @@ const HeaderHome = () => {
                             <NavLink className="dropdown-item" to="/responsive-demo">Responsive Demo</NavLink>
                         </div>
                     </li>
-
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Antd</a>
+                        <div className="dropdown-menu" aria-labelledby="dropdownId">
+                            <NavLink className="dropdown-item" to="/ant-design">Ant Design</NavLink>
+                        </div>
+                    </li>
                 </ul>
                 <form className="d-flex my-2 my-lg-0">
                     <input className="form-control me-sm-2" type="text" placeholder="Search" />
