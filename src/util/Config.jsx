@@ -68,6 +68,11 @@ httpClient.interceptors.request.use(config => {
     }
     return config;
 }, error => {
+    if (error.response.status === 401) {
+        //Xử lý lỗi xác thực, có thể là token hết hạn hoặc không có token
+        alert('Cần phải đăng nhập mới vào được!');
+        history.push('/login');
+    }
     return Promise.reject(error);
 }
 );

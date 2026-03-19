@@ -19,7 +19,7 @@ import BaiTapGioHang from './pages/LiftingStateUpDemo/BaiTapGioHang/BaiTapGioHan
 import GetAllProductPage from './pages/Api/GetAllProductPage'
 import ReactFormDemo from './pages/ReactFormDemo/ReactFormDemo'
 import DemoFormikYup from './pages/ReactFormDemo/DemoFormikYup'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, unstable_HistoryRouter as HistoryBrowser } from 'react-router-dom';
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Contact from './pages/Contact'
@@ -63,11 +63,15 @@ import ProductDetail from './pages/ReduxThunk/ProductDetail'
 import LoginPage from './pages/ReduxThunk/LoginPage.jsx/LoginPage'
 import DemoAntd from './pages/Antd/DemoAntd'
 const Hooks = lazy(() => import('./pages/Hooks')); // code split
+import { createBrowserHistory } from 'history'
+
+//tương ứng với useNavigate trong component, tuy nhiên có thể sử dụng được ở file không phải component như file cấu hình redux, file cấu hình router
+export const history = createBrowserHistory();
 
 
 createRoot(document.getElementById('root')).render(
   <>
-    <BrowserRouter>
+    <HistoryBrowser history={history}>
       <Provider store={store}>
         <DrawerContainer />
         <Routes>
@@ -131,6 +135,6 @@ createRoot(document.getElementById('root')).render(
           {/* {renderDynamicRoutes()} */}
         </Routes>
       </Provider>
-    </BrowserRouter>
+    </HistoryBrowser>
   </>
 )

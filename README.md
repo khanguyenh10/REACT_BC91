@@ -68,3 +68,8 @@ export default defineConfig({
 ```js
 npm i antd
 ```
+
+# history
+```js
+npm i history
+```
