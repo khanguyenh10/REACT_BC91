@@ -9,6 +9,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import ShoesFavorite from '../components/ShoesFavorite'
 import Line from '../components/ui/Line'
+import { formateDate } from '../util/textUtil'
 
 const Profile = () => {
     const userReducer = useSelector(rootState => rootState.userReducer);
@@ -34,7 +35,7 @@ const Profile = () => {
         }
     })
 
-    const [profile, setProfile] = useState();
+    const [ordersHistory, setOrderHistory] = useState([]);
     const navigate = useNavigate();
 
     //lấy infoProfile
@@ -44,6 +45,7 @@ const Profile = () => {
                 try {
                     let response = await getProfileApi();
                     profileForm.setValues({ ...response.data.content, password: response.data.content.password ? response.data.content.password : '' });
+                    setOrderHistory(response.data.content.ordersHistory);
                 } catch (error) {
                     toastError(error);
                 }
@@ -130,108 +132,64 @@ const Profile = () => {
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <ul>
-                            <li className='mb-5'>
-                                <h3 className='order-date mt-5'>
-                                    + Orders have been placed on 09 - 19 - 2020
-                                </h3>
-                                <div
-                                    className="table-responsive"
-                                >
-                                    <table
-                                        className="table "
-                                    >
-                                        <thead className=' '>
-                                            <tr className=''>
-                                                <th scope="col">id</th>
-                                                <th scope="col">img</th>
-                                                <th scope="col">name</th>
-                                                <th scope="col">price</th>
-                                                <th scope="col">quantity</th>
-                                                <th scope="col">total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className="">
-                                                <td>1</td>
-                                                <td>
-                                                    <img src='/shoes/thumbnail.png' width={85} />
-                                                </td>
-                                                <td>Product 1</td>
-                                                <td>1000</td>
-                                                <td>
-                                                    <input
-                                                        type="number"
-                                                        className=" text-center bg-secondary mx-3 "
-                                                        style={{ width: 100, lineHeight: 1 }}
-                                                        placeholder=""
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        min={1}
-                                                        value={1}
-                                                        readOnly
-                                                    />
-                                                </td>
-                                                <td>
-                                                    1000
-                                                </td>
-                                            </tr>
+                            {ordersHistory.map((item, index) => {
+                                return (
+                                    <li className='mb-5' key={index}>
+                                        <h3 className='order-date mt-5'>
+                                            + Orders have been placed on {formateDate(item.createdAt)}
+                                        </h3>
+                                        <div
+                                            className="table-responsive"
+                                        >
+                                            <table
+                                                className="table "
+                                            >
+                                                <thead className=' '>
+                                                    <tr className=''>
+                                                        <th scope="col">order Id</th>
+                                                        <th scope="col">order Email</th>
+                                                        {/* <th scope="col">img</th>
+                                                        <th scope="col">name</th>
+                                                        <th scope="col">price</th>
+                                                        <th scope="col">quantity</th>
+                                                        <th scope="col">total</th> */}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr className="">
+                                                        <td>{item.id}</td>
+                                                        <td>{item.email}</td>
+                                                        {/* <td>
+                                                            <img src='/shoes/thumbnail.png' width={85} />
+                                                        </td>
+                                                        <td>Product 1</td>
+                                                        <td>1000</td>
+                                                        <td>
+                                                            <input
+                                                                type="number"
+                                                                className=" text-center bg-secondary mx-3 "
+                                                                style={{ width: 100, lineHeight: 1 }}
+                                                                placeholder=""
+                                                                aria-label="Username"
+                                                                aria-describedby="basic-addon1"
+                                                                min={1}
+                                                                value={1}
+                                                                readOnly
+                                                            />
+                                                        </td>
+                                                        <td>
+                                                            1000
+                                                        </td> */}
+                                                    </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </li>
-                            <li>
-                                <h3 className='order-date mt-5'>
-                                    + Orders have been placed on 09 - 19 - 2020
-                                </h3>
-                                <div
-                                    className="table-responsive"
-                                >
-                                    <table
-                                        className="table "
-                                    >
-                                        <thead className=' '>
-                                            <tr className=''>
-                                                <th scope="col">id</th>
-                                                <th scope="col">img</th>
-                                                <th scope="col">name</th>
-                                                <th scope="col">price</th>
-                                                <th scope="col">quantity</th>
-                                                <th scope="col">total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr className="">
-                                                <td>1</td>
-                                                <td>
-                                                    <img src='/shoes/thumbnail.png' width={85} />
-                                                </td>
-                                                <td>Product 1</td>
-                                                <td>1000</td>
-                                                <td>
-                                                    <input
-                                                        type="number"
-                                                        className=" text-center bg-secondary mx-3 "
-                                                        style={{ width: 100, lineHeight: 1 }}
-                                                        placeholder=""
-                                                        aria-label="Username"
-                                                        aria-describedby="basic-addon1"
-                                                        min={1}
-                                                        value={1}
-                                                        readOnly
-                                                    />
-                                                </td>
-                                                <td>
-                                                    1000
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </li>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                )
+                            })}
                         </ul>
-                        <nav aria-label="Page navigation example">
+                        {/* <nav aria-label="Page navigation example">
                             <ul className="pagination justify-content-end">
                                 <li className="page-item">
                                     <a className="page-link" href="#" aria-label="Previous">
@@ -247,7 +205,7 @@ const Profile = () => {
                                     </a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav> */}
 
                     </div>
                     <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">

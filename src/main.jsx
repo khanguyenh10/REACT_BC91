@@ -12,6 +12,7 @@ const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Carts = lazy(() => import('./pages/Carts'));
+const ChangePassword = lazy(() => import('./pages/ChangePassword'));
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='detail/:id' element={<Detail />}></Route>
             <Route path='login' element={<Login />}></Route>
             <Route path='register' element={<Register />}></Route>
+            <Route path='change-password' element={<ChangePassword />}></Route>
             <Route path='profile' element={<Profile />}></Route>
             <Route path='carts' element={<Carts />}></Route>
           </Route>

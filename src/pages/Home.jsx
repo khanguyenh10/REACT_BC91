@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className='home-page'>
       <div className="container">
-        <ShoeCarousel />
+        <ShoeCarousel products={products?.splice(0, 3)} />
         <div className="row">
           <div className="col-md-6">
             <HeadingTitle title={'Product Feature'} />

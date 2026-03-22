@@ -63,6 +63,20 @@ export default defineConfig({
   color: $primary-color;
 }
 ```
+## Lodash
+```js
+npm i lodash
+```
+
+## Day.js
+1. install
+```js
+npm install dayjs
+```
+2. 
+```js
+dayjs(date).format('DD/MM/YYYY HH:mm');
+```
 
 ## Swiper
 1. cài đặt

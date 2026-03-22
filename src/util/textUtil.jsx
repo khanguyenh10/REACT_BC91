@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const limitText = (text, maxText) => {
     let newText = text;
     if (text.length > maxText) {
@@ -15,4 +17,7 @@ export function stringToSlug(str) {
         .trim()
         .replace(/\s+/g, "-")            // space → -
         .replace(/-+/g, "-");            // bỏ -- dư
+}
+export function formateDate(dateString, format = 'DD/MM/YYYY HH:mm') {
+    return dayjs(dateString).format(format);
 }

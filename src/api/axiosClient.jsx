@@ -17,4 +17,18 @@ axiosClient.interceptors.request.use((config) => {
 
     return config;
 });
+
+// xử lý lỗi response
+axiosClient.interceptors.response.use((response) => {
+    return response;
+}, (error) => {
+    if (error.response?.status == 401) {
+        localStorage.removeItem("userInfo");
+        window.location.href = "/login";
+    } else if (error.response?.status == 400) {
+        // window.location.href = "/notfound";
+    }
+    return Promise.reject(error);
+});
+
 export default axiosClient;

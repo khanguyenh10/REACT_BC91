@@ -21,3 +21,6 @@ export const toastError = (data) => {
         localStorage.removeItem('userInfo');
     }
 };
+export const toastSuccess = (message) => {
+    toast.success(message);
+}

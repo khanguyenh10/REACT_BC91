@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { use, useEffect } from 'react'
 import FormItem from '../components/FormItem'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
@@ -6,11 +6,13 @@ import * as Yup from 'yup';
 import { signInApi } from '../api/userApi';
 import { signIn } from '../redux/reducer/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { toastPromise } from '../util/toast';
+import { toastError, toastPromise, toastSuccess } from '../util/toast';
+import usePostData from '../hooks/usePostData';
 const Login = () => {
     const userReducer = useSelector(rootState => rootState.userReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { mutate, isLoading, error, data } = usePostData(signInApi);
     const userForm = useFormik({
         initialValues: {
             email: '',
@@ -21,12 +23,7 @@ const Login = () => {
             password: Yup.string().required('Mật khẩu không được để trống').matches('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})', 'Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số và ký tự đặc biệt'),
         }),
         onSubmit: async (values) => {
-            let response = await toastPromise(signInApi(values), 'Đăng nhập');
-            const action = signIn(response.data.content);
-            dispatch(action);
-            setTimeout(() => {
-                navigate('/');
-            }, 1000);
+            mutate(values);
         }
     })
     useEffect(() => {
@@ -34,6 +31,16 @@ const Login = () => {
             navigate('/');
         }
     }, [userReducer.isLogined])
+    useEffect(() => {
+        if (error) {
+            toastError(error);
+        }
+        if (data) {
+            toastSuccess('Đăng nhập thành công');
+            const action = signIn(data);
+            dispatch(action);
+        }
+    }, [error, data])
     return (
         <div className='login-page'>
             <div className="container">
@@ -56,16 +63,16 @@ const Login = () => {
                         <div className="col-md-6 col-lg-4 mb-3">
                             <div className=' d-flex gap-2 justify-content-end align-items-center'>
                                 <Link to={'/register'} className=' text-primary '>Register?</Link>
-                                <button type='submit' className='shadow' disabled={!userForm.isValid || userForm.isSubmitting}>Login</button>
+                                <button type='submit' className='shadow' disabled={!userForm.isValid || isLoading}>Login</button>
                             </div>
-                            <button className='btn btn-light-primary px-5 py-3 rounded-5 w-100 mt-2'>
+                            {/* <button className='btn btn-light-primary px-5 py-3 rounded-5 w-100 mt-2'>
                                 <div className='d-flex gap-4 gap-md-5 align-items-center '>
                                     <span className='d-flex align-items-center justify-content-center p-2 btn-light text-light-primary rounded-circle fs-2' style={{ width: 35, height: 35 }}>
                                         <i className="fab fa-facebook-f"></i>
                                     </span>
-                                    <span className=' fs-2 text-light'>Continue with Google</span>
+                                    <span className=' fs-2 text-light'>Continue with Facebook</span>
                                 </div>
-                            </button>
+                            </button> */}
                         </div>
                     </div>
 

@@ -29,3 +29,9 @@ export const signInApi = (user) => {
 export const signUpApi = (user) => {
     return axiosClient.post('/Users/signup', user);
 }
+export const changePasswordApi = (data) => {
+    return axiosClient.post('/Users/changePassword', data);
+}
+export const postOrder = (data) => {
+    return axiosClient.post('/Users/order', data);
+}

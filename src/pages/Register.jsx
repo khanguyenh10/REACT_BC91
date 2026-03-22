@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormItem from '../components/FormItem'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { signUpApi } from '../api/userApi';
-import { toastPromise } from '../util/toast';
+import { toastError, toastPromise, toastSuccess } from '../util/toast';
+import usePostData from '../hooks/usePostData';
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { mutate, isLoading, error, data } = usePostData(signUpApi)
     const userForm = useFormik({
         initialValues: {
             email: '',
@@ -33,14 +35,22 @@ const Register = () => {
                 phone: values.phone,
                 gender: values.gender
             }
-            let response = await toastPromise(signUpApi(data));
-            console.log(response)
+            mutate(data);
+        }
+    })
+
+    useEffect(() => {
+        if (error) {
+            toastError(error);
+        }
+        if (data) {
+            toastSuccess('Đăng ký thành công');
             setTimeout(() => {
                 navigate('/login');
             })
         }
-    })
-    console.log(userForm.values)
+    }, [error, data])
+
     return (
         <div className='login-page'>
             <div className="container">
@@ -84,7 +94,7 @@ const Register = () => {
                                     </label>
                                 </div>
                             </div>
-                            <button type='submit' className='shadow mt-4' disabled={!userForm.isValid || userForm.isSubmitting}>Submit</button>
+                            <button type='submit' className='shadow mt-4' disabled={!userForm.isValid || isLoading}>Submit</button>
                         </div>
                     </div>
                 </form>

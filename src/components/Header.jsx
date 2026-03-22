@@ -2,9 +2,13 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Links, NavLink } from 'react-router-dom'
 import { signOut } from '../redux/reducer/userReducer';
+import useRedux from '../hooks/useRedux';
 
 const Header = () => {
-    const userReducer = useSelector(rootState => rootState.userReducer);
+    const { useAppSelector } = useRedux();
+    const userReducer = useAppSelector(rootState => rootState.userReducer);
+    const cartReducer = useAppSelector(rootState => rootState.cartReducer);
+    const cartTotal = cartReducer.cart.reduce((total, product) => total + product.quantity, 0);
     const dispatch = useDispatch();
     const { isLogined, email } = userReducer;
 
@@ -16,14 +20,32 @@ const Header = () => {
     }
     const renderNavigate = () => {
         if (isLogined) {
-            return <li>
-                <Link to={'/profile'} className='text-decoration-underline text-white '>
-                    <span className='fw-light ms-2'>{email}</span>
-                </Link>
-                <a href="#" onClick={handleLogout} className='text-decoration-underline text-white '>
-                    <span className='fw-light ms-2'>Logout</span>
-                </a>
-            </li>
+            return (
+                <div className="dropdown">
+                    <button className="btn btn-secondary text-dark fs-5 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {email}
+                    </button>
+                    <ul className="dropdown-menu">
+                        <li>
+                            <Link to="/profile" className=" dropdown-item text-decoration-underline text-dark  " >
+                                <span className="fw-light ms-2 fs-5">Profile</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/change-password" className=" dropdown-item text-decoration-underline text-dark" >
+                                <span className="fw-light ms-2 fs-5">Change password</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <button onClick={handleLogout} className=" dropdown-item text-decoration-underline text-dark" >
+                                <span className="fw-light ms-2 fs-5">Logout</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+            )
+
         } else {
             return <>
 
@@ -70,7 +92,7 @@ const Header = () => {
                                         <li>
                                             <Link to={'/carts'} className='text-decoration-none text-white '>
                                                 <img src='/shoes/cart.png' />
-                                                <span className='fs-2 ms-2'>(1)</span>
+                                                <span className='fs-2 ms-2'>({cartTotal})</span>
                                             </Link>
                                         </li>
                                         {renderNavigate()}

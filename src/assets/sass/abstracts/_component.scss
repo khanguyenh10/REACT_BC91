@@ -53,16 +53,17 @@ $i: 1;
     .btn-#{$color} {
         background-color: $value;
         border-color: $value;
+        &:active,
         &:hover {
-            background-color: color.adjust($value, $lightness: -10%);
-            border-color: $value;
+            background-color: color.adjust($value, $lightness: -10%) !important;
+            border-color: $value !important;
         }
     }
     .btn-outline-#{$color} {
         border: 1px solid $value;
         &:hover {
-            background-color: color.adjust($value, $lightness: -10%);
-            border-color: $value;
+            background-color: color.adjust($value, $lightness: -10%) !important;
+            border-color: $value !important;
         }
     }
 }

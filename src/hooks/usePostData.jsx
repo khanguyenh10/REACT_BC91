@@ -9,8 +9,11 @@ const usePostData = (postApiFunction) => {
         try {
             setIsLoading(true);
             const response = await postApiFunction(payload);
-            setData(response.data);
+            const content = response?.data?.content || null;
+            setData(content);
+            console.log('vasdsa');
         } catch (err) {
+            console.log('error', err);
             setError(err);
         } finally {
             setIsLoading(false);

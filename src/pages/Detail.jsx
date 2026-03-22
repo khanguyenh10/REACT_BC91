@@ -1,13 +1,18 @@
 import React, { use, useEffect, useState } from 'react'
 import Products from '../components/Products'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getProductByIdApi } from '../api/productApi';
-import { toast } from 'react-toastify';
+import { toastError, toastSuccess } from '../util/toast';
+import useRedux from '../hooks/useRedux';
+import { addToCart } from '../redux/reducer/cartReducer';
 
 const Detail = () => {
     const [productDetail, setProductDetail] = useState();
     const params = useParams();
-    console.log(params)
+    const [number, setNumber] = useState(1);
+    console.log(params);
+    const { dispatch } = useRedux();
+    const navigation = useNavigate();
     useEffect(() => {
         const getProductDetail = async () => {
             try {
@@ -15,13 +20,20 @@ const Detail = () => {
                 setProductDetail(response.data.content);
                 window.scrollTo(0, 0)
             } catch (error) {
-                toast.error(JSON.stringify(error?.message));
+                toastError(error);
+                navigation('/notfound');
             }
 
         }
         getProductDetail();
     }, [params])
 
+
+    const handleAddToCart = () => {
+        const action = addToCart({ id: productDetail?.id, name: productDetail?.name, price: productDetail?.price, image: productDetail?.image, quantity: number });
+        dispatch(action);
+        toastSuccess('Thêm vào giỏ hàng thành công');
+    }
 
     return (
         <div className='detail-page'>
@@ -50,11 +62,11 @@ const Detail = () => {
                         </div>
                         <p className='price fs-3 fw-semibold text-danger mt-4'>{productDetail?.price} $</p>
                         <div className='quantity'>
-                            <button className='btn btn-increase'>+</button>
-                            <input type='number' min={1} readOnly value={1} />
-                            <button className='btn btn-increase'>-</button>
+                            <button className='btn btn-increase' onClick={() => setNumber(number + 1)}>+</button>
+                            <input type='number' min={1} readOnly value={number} />
+                            <button className='btn btn-increase' onClick={() => setNumber(Math.max(1, number - 1))}>-</button>
                         </div>
-                        <button className='btn btn-add-to-cart my-2' style={{ fontSize: '2.4rem' }}>Add to cart</button>
+                        <button className='btn btn-add-to-cart my-2' style={{ fontSize: '2.4rem' }} onClick={handleAddToCart}>Add to cart</button>
                     </div>
                 </div>
                 <h2 className='fs-4 text-center'>-Realate Product -</h2>
