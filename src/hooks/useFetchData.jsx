@@ -4,16 +4,17 @@ import { ref } from "yup";
 import useRedux from "./useRedux";
 
 //dủng 
-const useFetchData = (fetchApiFunction, isCheckLogined = false) => {
+const useFetchData = (fetchApiFunction, params) => {
     const [data, setData] = useState(null); // dùng fetch List hoặc detail 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const { useAppSelector } = useRedux();
     const { isLogined } = useAppSelector(state => state.userReducer);
-    const getDataApi = async () => {
+    const getDataApi = async (customParams) => {
+        const finalParams = customParams || params;
         try {
             setIsLoading(true);
-            let response = await fetchApiFunction();
+            let response = await fetchApiFunction(finalParams);
             const content = response?.data?.content || null;
             setData(content);
         } catch (error) {
@@ -23,9 +24,8 @@ const useFetchData = (fetchApiFunction, isCheckLogined = false) => {
         }
     }
     useEffect(() => {
-        if (isCheckLogined && !isLogined) return;
         getDataApi();
-    }, [isLogined, isCheckLogined])
+    }, [])
 
     return {
         data,

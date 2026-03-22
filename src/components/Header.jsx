@@ -10,7 +10,7 @@ const Header = () => {
     const cartReducer = useAppSelector(rootState => rootState.cartReducer);
     const cartTotal = cartReducer.cart.reduce((total, product) => total + product.quantity, 0);
     const dispatch = useDispatch();
-    const { isLogined, email } = userReducer;
+    const { isLogined, userLogin } = userReducer;
 
 
     //logout
@@ -23,7 +23,7 @@ const Header = () => {
             return (
                 <div className="dropdown">
                     <button className="btn btn-secondary text-dark fs-5 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {email}
+                        {userLogin}
                     </button>
                     <ul className="dropdown-menu">
                         <li>

@@ -10,7 +10,7 @@ import { toggleProductFavorite } from '../redux/reducer/userReducer';
 
 const ShoeFavoriteIcon = ({ productId, productName, productImage }) => {
     const { useAppSelector, dispatch } = useRedux();
-    const { productsFavorite } = useAppSelector(state => state.userReducer);
+    const { productsFavorite, isLogined } = useAppSelector(state => state.userReducer);
     const isLiked = productsFavorite?.find(product => product.id === productId) ? true : false;
     const { mutate: postLike, isLoading, error } = usePostData(getLikeApi);
     const { mutate: postUnLike, isLoadingUnLike, errorUnLike } = usePostData(getUnLikeApi);
@@ -19,6 +19,10 @@ const ShoeFavoriteIcon = ({ productId, productName, productImage }) => {
     }, [error, errorUnLike])
 
     const handeLikes = () => {
+        if (!isLogined) {
+            toastError({ message: 'Vui lòng đăng nhập để sử dụng tính năng này' });
+            return;
+        }
         if (isLiked) {
             postUnLike(productId)
         } else {

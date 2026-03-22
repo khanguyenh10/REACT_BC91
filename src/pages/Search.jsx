@@ -6,33 +6,30 @@ import Products from '../components/Products'
 import { getProductApi } from '../api/productApi'
 import { useSearchParams } from 'react-router-dom'
 import { sortAscending, sortDescending } from '../util/sortUtil'
+import useRedux from '@/hooks/useRedux'
+import { getAllProductActionThunk } from '@/redux/reducer/productReducer'
+import { getProductFavoritesActionThunk } from '@/redux/reducer/userReducer'
 
 const Search = () => {
-    const [products, setProducts] = React.useState([]);
+    const { useAppSelector, dispatch } = useRedux();
+    const { arrProduct: products } = useAppSelector(state => state.productReducer);
     const [searchParams, setSearchParams] = useSearchParams();
-    const keyword = searchParams.get('q');
+    const keyword = searchParams.get('q') || '';
     const [isDescending, setIsDescending] = React.useState(true);
     const productsSorted = isDescending ? sortDescending(products, 'name') : sortAscending(products, 'name');
 
-    const getProducts = async () => {
-        try {
-            let response = await getProductApi(keyword);
-            setProducts(response.data.content.slice(0, 18));
-        } catch (error) {
-
-        }
-
+    const handleSearchSubmit = () => {
+        dispatch(getAllProductActionThunk(keyword));
     }
+    // callApi product theo keyword khi vào trang search
     useEffect(() => {
-        getProducts();
+        dispatch(getAllProductActionThunk(keyword));
+    }, []);
+    // call api lấy arrProduct yêu thích của user để hiển thị ở trang search chỉ gọi khi có accessToken
+    useEffect(() => {
+        dispatch(getProductFavoritesActionThunk());
     }, []);
 
-    console.log(products);
-
-
-    const handleSearchSubmit = () => {
-        getProducts();
-    }
 
     return (
         <div className='search-page'>

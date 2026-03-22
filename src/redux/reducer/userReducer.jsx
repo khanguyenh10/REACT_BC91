@@ -1,20 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getData, saveData } from "../../util/saveUtil";
+import { getLocalStorageString, removeLocalStorage, setLocalStorageString } from "../../util/storageUtil";
+import { getProductFavoritesApi, signInApi } from "@/api/userApi";
+import { toastError } from "@/util/toast";
+import { ACCESSTOKEN, USERLOGIN } from "@/util/Config";
 
 
 const getUserInfo = () => {
     let userInfo = {
-        accessToken: '',
-        email: '',
-        isLogined: false,
+        accessToken: getLocalStorageString(ACCESSTOKEN),
+        userLogin: getLocalStorageString(USERLOGIN),
+        isLogined: !!getLocalStorageString(ACCESSTOKEN),
         productsFavorite: [],
     };
-    if (getData('userInfo')) {
-        let userInfoData = getData('userInfo');
-        userInfo.accessToken = userInfoData.accessToken;
-        userInfo.email = userInfoData.email;
-        userInfo.isLogined = Boolean(userInfoData.isLogined);
-    }
     return userInfo;
 }
 
@@ -24,17 +21,19 @@ const userSlice = createSlice({
     reducers: {
         signIn: (state, action) => {
             state.accessToken = action.payload.accessToken;
-            state.email = action.payload.email;
+            state.userLogin = action.payload.email;
             state.isLogined = true;
-            saveData(state, 'userInfo');
+            setLocalStorageString(ACCESSTOKEN, action.payload.accessToken);
+            setLocalStorageString(USERLOGIN, action.payload.email);
         },
-        signOut: (state, action) => {
+        signOut: (state) => {
             state.accessToken = '';
-            state.email = '';
+            state.userLogin = '';
             state.isLogined = false;
-            localStorage.removeItem('userInfo');
+            removeLocalStorage(ACCESSTOKEN);
+            removeLocalStorage(USERLOGIN);
         },
-        renderProductsFavorite: (state, action) => {
+        setProductsFavorite: (state, action) => {
             state.productsFavorite = action.payload.productsFavorite;
         },
         toggleProductFavorite: (state, action) => {
@@ -47,5 +46,26 @@ const userSlice = createSlice({
         },
     }
 })
-export const { signIn, signOut, renderProductsFavorite, toggleProductFavorite } = userSlice.actions
+export const { signIn, signOut, setProductsFavorite, toggleProductFavorite } = userSlice.actions
 export default userSlice.reducer;
+
+
+
+
+// ------------------------------- action thunk----------------------------
+
+export const getProductFavoritesActionThunk = () => {
+    return async (dispatch) => {
+        try {
+            if (!getLocalStorageString(ACCESSTOKEN)) {
+                return;
+            }
+            const res = await getProductFavoritesApi();
+            const actionPayload = setProductsFavorite(res.data.content);
+            dispatch(actionPayload)
+        }
+        catch (err) {
+            toastError(err);
+        }
+    }
+}
