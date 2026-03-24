@@ -1,3 +1,4 @@
+import { history } from "@/main";
 import { ACCESSTOKEN, DOMAIN, USERLOGIN } from "@/util/Config";
 import { getLocalStorageString } from "@/util/storageUtil";
 import axios from "axios";
@@ -17,18 +18,19 @@ axiosClient.interceptors.request.use((config) => {
     }
 
     return config;
+}, (error) => {
+    return Promise.reject(error);
 });
 
 // xử lý lỗi response
 axiosClient.interceptors.response.use((response) => {
     return response;
 }, (error) => {
+    console.log('Error in response interceptor:', error);
     if (error.response?.status == 401) {
-        localStorage.removeItem(ACCESSTOKEN);
-        localStorage.removeItem(USERLOGIN);
-        // window.location.href = "/login";
-    } else if (error.response?.status == 400) {
-        // window.location.href = "/notfound";
+        history.push('/login');
+    } else if (error.response?.status == 400 || error.response?.status == 404) {
+        history.push('/notfound');
     }
     return Promise.reject(error);
 });

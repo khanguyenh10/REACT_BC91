@@ -129,3 +129,22 @@ export default defineConfig({
   ]
 })
 ```
+## History Router
+tương ứng như useNavigate tuy nhiên nó sử dụng được ở những file ko phải component , như ở redux, file cấu hình router
+1. Cài đặt
+```js
+npm i history
+```
+2. sử dụng
+```js
+import { unstable_HistoryRouter as HistoryRouter} from 'react-router-dom';
+export const history = createBrowserHistory();
+
+<HistoryRouter>
+  <Routes>
+    <Route path='' element={<p>HomeTemplate</p>}>
+        <Route index element={<p>Home</p>}/>
+    </Route>
+  </Routes>
+</HistoryRouter>
+```

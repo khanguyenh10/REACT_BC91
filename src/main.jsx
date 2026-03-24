@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { lazy } from 'react';
 const HomeTemplate = lazy(() => import('./Templates/HomeTemplate'));
 const Home = lazy(() => import('./pages/Home'));
@@ -21,10 +21,12 @@ import 'swiper/css/scrollbar';
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/sass/main.scss";
 import { ToastContainer } from 'react-toastify';
+import { createBrowserHistory } from 'history';
 
+export const history = createBrowserHistory();
 createRoot(document.getElementById('root')).render(
   <>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <ToastContainer />
       <Provider store={store}>
         <Routes>
@@ -42,7 +44,6 @@ createRoot(document.getElementById('root')).render(
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Provider>
-    </BrowserRouter>
-
+    </HistoryRouter>
   </>
 )

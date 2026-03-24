@@ -8,6 +8,7 @@ import usePostData from '../hooks/usePostData';
 import { toastError } from '../util/toast';
 import { toggleProductFavorite } from '../redux/reducer/userReducer';
 import useUserInfo from '@/hooks/useUserInfo';
+import { useNavigate } from 'react-router-dom';
 
 const ShoeFavoriteIcon = ({ productId, productName, productImage }) => {
     const { dispatch } = useRedux();
@@ -15,13 +16,14 @@ const ShoeFavoriteIcon = ({ productId, productName, productImage }) => {
     const isLiked = productsFavorite.some(product => product.id === productId); // kiểm tra sản phẩm đã được yêu thích hay chưa
     const { mutate: postLike, isLoading, error } = usePostData(getLikeApi);
     const { mutate: postUnLike, isLoadingUnLike, errorUnLike } = usePostData(getUnLikeApi);
+    const navigate = useNavigate();
     useEffect(() => {
         if (error || errorUnLike) toastError(error);
     }, [error, errorUnLike])
 
     const handeLikes = () => {
         if (!isLogined) {
-            toastError({ message: 'Vui lòng đăng nhập để sử dụng tính năng này' });
+            navigate('/login');
             return;
         }
         if (isLiked) {
