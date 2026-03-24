@@ -1,6 +1,6 @@
 import { history } from "@/main";
 import { ACCESSTOKEN, DOMAIN, USERLOGIN } from "@/util/Config";
-import { getLocalStorageString } from "@/util/storageUtil";
+import { getLocalStorageString, removeLocalStorage } from "@/util/storageUtil";
 import axios from "axios";
 
 // thiết lập các giá trị mặc địng cho axios
@@ -29,6 +29,8 @@ axiosClient.interceptors.response.use((response) => {
     console.log('Error in response interceptor:', error);
     if (error.response?.status == 401) {
         history.push('/login');
+        removeLocalStorage(ACCESSTOKEN);
+        removeLocalStorage(USERLOGIN);
     } else if (error.response?.status == 400 || error.response?.status == 404) {
         history.push('/notfound');
     }
