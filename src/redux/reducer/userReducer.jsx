@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getLocalStorageString, removeLocalStorage, setLocalStorageString } from "../../util/storageUtil";
 import { getProductFavoritesApi, signInApi } from "@/api/userApi";
 import { toastError } from "@/util/toast";
-import { ACCESSTOKEN, USERLOGIN } from "@/util/Config";
+import { ACCESSTOKEN, USERLOGIN } from "@/util/config";
 
 
 const getUserInfo = () => {
