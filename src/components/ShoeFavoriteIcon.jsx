@@ -11,7 +11,7 @@ import { toggleProductFavorite } from '../redux/reducer/userReducer';
 const ShoeFavoriteIcon = ({ productId, productName, productImage }) => {
     const { useAppSelector, dispatch } = useRedux();
     const { productsFavorite, isLogined } = useAppSelector(state => state.userReducer);
-    const isLiked = productsFavorite?.find(product => product.id === productId) ? true : false;
+    const isLiked = productsFavorite.some(product => product.id === productId); // kiểm tra sản phẩm đã được yêu thích hay chưa
     const { mutate: postLike, isLoading, error } = usePostData(getLikeApi);
     const { mutate: postUnLike, isLoadingUnLike, errorUnLike } = usePostData(getUnLikeApi);
     useEffect(() => {

@@ -61,13 +61,14 @@ const Carts = () => {
         if (data) {
             toastSuccess('Đặt hàng thành công');
             dispatch(resetCart(selectedProducts));
-            // navigate('/profile');
+            navigate('/profile');
         }
         if (error) {
             toastError(error);
         }
-    }, [data, error]);
-    console.log(selectedProducts, selectedProducts.includes(product => product.productId === 5))
+    }, [data, error, selectedProducts]);
+
+
     return (
         <div className='cart-page'>
             <div className="container">

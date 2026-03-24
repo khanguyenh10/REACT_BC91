@@ -1,38 +1,32 @@
 import React, { use, useEffect, useState } from 'react'
 import Products from '../components/Products'
-import { useNavigate, useParams } from 'react-router-dom';
-import { getProductByIdApi } from '../api/productApi';
-import { toastError, toastSuccess } from '../util/toast';
+import { toastSuccess } from '../util/toast';
 import useRedux from '../hooks/useRedux';
 import { addToCart } from '../redux/reducer/cartReducer';
+import { getProductDetailActionThunk } from '@/redux/reducer/productReducer';
+import useRouting from '@/hooks/useRouting';
+import { getProductFavoritesActionThunk } from '@/redux/reducer/userReducer';
 
 const Detail = () => {
-    const [productDetail, setProductDetail] = useState();
-    const params = useParams();
+    const { useAppSelector, dispatch } = useRedux();
+    const { productDetail } = useAppSelector(state => state.productReducer);
+    const { params, navigate } = useRouting();
     const [number, setNumber] = useState(1);
     console.log(params);
-    const { dispatch } = useRedux();
-    const navigation = useNavigate();
     useEffect(() => {
-        const getProductDetail = async () => {
-            try {
-                let response = await getProductByIdApi(params.id);
-                setProductDetail(response.data.content);
-                window.scrollTo(0, 0)
-            } catch (error) {
-                toastError(error);
-                navigation('/notfound');
-            }
-
-        }
-        getProductDetail();
+        dispatch(getProductDetailActionThunk(params.id));
+        window.scrollTo(0, 0)
     }, [params])
 
-
+    // lay arrProduct yêu thích của user để hiển thị ở trang chủ chỉ gọi khi có accessToken
+    useEffect(() => {
+        dispatch(getProductFavoritesActionThunk());
+    }, [])
     const handleAddToCart = () => {
         const action = addToCart({ id: productDetail?.id, name: productDetail?.name, price: productDetail?.price, image: productDetail?.image, quantity: number });
         dispatch(action);
         toastSuccess('Thêm vào giỏ hàng thành công');
+        navigate('/carts');
     }
 
     return (
@@ -51,7 +45,7 @@ const Detail = () => {
                             <h3 className='text-success' style={{ fontSize: '2.4rem' }}>Available size
                             </h3>
                             <ul className='d-flex gap-3 flex-wrap mt-4'>
-                                {productDetail?.size.map((item, index) => {
+                                {productDetail?.size?.map((item, index) => {
                                     return (
                                         <li key={index}>
                                             <a href="#" className='p-3 bg-secondary fw-semibold'>{item}</a>
