@@ -1,5 +1,5 @@
 import { history } from "@/main";
-import { ACCESSTOKEN, DOMAIN, USERLOGIN } from "@/util/Config";
+import { ACCESSTOKEN, DOMAIN, USERLOGIN } from "@/util/config";
 import { getLocalStorageString, removeLocalStorage } from "@/util/storageUtil";
 import axios from "axios";
 
