@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter, Route, Routes, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import { lazy } from 'react';
-const HomeTemplate = lazy(() => import('./Templates/HomeTemplate'));
+const HomeTemplate = lazy(() => import('./templates/HomeTemplate'));
 const Home = lazy(() => import('./pages/Home'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Search = lazy(() => import('./pages/Search'));
