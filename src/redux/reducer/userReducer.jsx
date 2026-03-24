@@ -9,7 +9,6 @@ const getUserInfo = () => {
     let userInfo = {
         accessToken: getLocalStorageString(ACCESSTOKEN),
         userLogin: getLocalStorageString(USERLOGIN),
-        isLogined: !!getLocalStorageString(ACCESSTOKEN),
         productsFavorite: [],
     };
     return userInfo;
@@ -22,14 +21,12 @@ const userSlice = createSlice({
         signIn: (state, action) => {
             state.accessToken = action.payload.accessToken;
             state.userLogin = action.payload.email;
-            state.isLogined = true;
             setLocalStorageString(ACCESSTOKEN, action.payload.accessToken);
             setLocalStorageString(USERLOGIN, action.payload.email);
         },
         signOut: (state) => {
             state.accessToken = '';
             state.userLogin = '';
-            state.isLogined = false;
             removeLocalStorage(ACCESSTOKEN);
             removeLocalStorage(USERLOGIN);
         },

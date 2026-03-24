@@ -1,25 +1,19 @@
 import React, { use, useEffect } from 'react'
 import useRedux from '../hooks/useRedux'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { addToCart, removeToCart, resetCart, updateToCart } from '../redux/reducer/cartReducer';
 import usePostData from '../hooks/usePostData';
 import { postOrder } from '../api/userApi';
 import { toastError, toastSuccess } from '../util/toast';
+import useUserInfo from '@/hooks/useUserInfo';
 
 const Carts = () => {
     const { useAppSelector, dispatch } = useRedux();
-    const userReducer = useAppSelector(rootState => rootState.userReducer);
     const cartReducer = useAppSelector(rootState => rootState.cartReducer);
     const { mutate, isLoading, error, data } = usePostData(postOrder) // sử dụng hook usePostData để gửi dữ liệu đặt hàng lên server
-    const { isLogined } = userReducer;
+    const { isLogined, userLogin } = useUserInfo();
     const navigate = useNavigate();
     const [selectedProducts, setSelectedProducts] = React.useState([]);
-
-    useEffect(() => {
-        if (!isLogined) {
-            navigate('/login');
-        }
-    }, [isLogined]);
 
     const handleChangeQuantity = (productId, quantity) => {
         if (quantity < 1) return;
@@ -37,7 +31,7 @@ const Carts = () => {
         }
         mutate({
             orderDetails: selectedProducts,
-            email: userReducer.email,
+            email: userLogin,
         })
     }
     const handleSelectProduct = (productId, checked) => {
@@ -69,6 +63,9 @@ const Carts = () => {
     }, [data, error, selectedProducts]);
 
 
+    if (!isLogined) {
+        return <Navigate to={'/login'} />;
+    }
     return (
         <div className='cart-page'>
             <div className="container">

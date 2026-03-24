@@ -1,6 +1,6 @@
 import React, { use, useEffect } from 'react'
 import FormItem from '../components/FormItem'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -8,9 +8,9 @@ import { changePasswordApi, signUpApi } from '../api/userApi';
 import { toastError, toastPromise, toastSuccess } from '../util/toast';
 import { signOut } from '../redux/reducer/userReducer';
 import usePostData from '../hooks/usePostData';
+import useUserInfo from '@/hooks/useUserInfo';
 const ChangePassword = () => {
-    const userReducer = useSelector(rootState => rootState.userReducer);
-    const { isLogined } = userReducer;
+    const { isLogined } = useUserInfo();
     const { mutate, isLoading, error, data } = usePostData(changePasswordApi)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,11 +32,7 @@ const ChangePassword = () => {
     })
     console.log(userForm.values)
 
-    useEffect(() => {
-        if (!isLogined) {
-            navigate('/login');
-        }
-    }, [isLogined])
+
 
     useEffect(() => {
         if (error) {
@@ -49,6 +45,11 @@ const ChangePassword = () => {
             })
         }
     }, [error, data])
+
+
+    if (!isLogined) {
+        return <Navigate to={'/login'} />
+    }
     return (
         <div className='login-page'>
             <div className="container">

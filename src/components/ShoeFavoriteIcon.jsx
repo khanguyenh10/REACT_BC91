@@ -7,10 +7,11 @@ import Loading from './ui/Loading';
 import usePostData from '../hooks/usePostData';
 import { toastError } from '../util/toast';
 import { toggleProductFavorite } from '../redux/reducer/userReducer';
+import useUserInfo from '@/hooks/useUserInfo';
 
 const ShoeFavoriteIcon = ({ productId, productName, productImage }) => {
-    const { useAppSelector, dispatch } = useRedux();
-    const { productsFavorite, isLogined } = useAppSelector(state => state.userReducer);
+    const { dispatch } = useRedux();
+    const { productsFavorite, isLogined } = useUserInfo();
     const isLiked = productsFavorite.some(product => product.id === productId); // kiểm tra sản phẩm đã được yêu thích hay chưa
     const { mutate: postLike, isLoading, error } = usePostData(getLikeApi);
     const { mutate: postUnLike, isLoadingUnLike, errorUnLike } = usePostData(getUnLikeApi);

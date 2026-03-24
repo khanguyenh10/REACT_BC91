@@ -1,4 +1,4 @@
-import { ACCESSTOKEN, DOMAIN } from "@/util/Config";
+import { ACCESSTOKEN, DOMAIN, USERLOGIN } from "@/util/Config";
 import { getLocalStorageString } from "@/util/storageUtil";
 import axios from "axios";
 
@@ -24,7 +24,8 @@ axiosClient.interceptors.response.use((response) => {
     return response;
 }, (error) => {
     if (error.response?.status == 401) {
-        // localStorage.removeItem("userInfo");
+        localStorage.removeItem(ACCESSTOKEN);
+        localStorage.removeItem(USERLOGIN);
         // window.location.href = "/login";
     } else if (error.response?.status == 400) {
         // window.location.href = "/notfound";

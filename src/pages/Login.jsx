@@ -1,6 +1,6 @@
 import React, { use, useEffect } from 'react'
 import FormItem from '../components/FormItem'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
 import { signInApi } from '../api/userApi';
@@ -8,10 +8,11 @@ import { signIn } from '../redux/reducer/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { toastError, toastPromise, toastSuccess } from '../util/toast';
 import usePostData from '../hooks/usePostData';
+import useRedux from '@/hooks/useRedux';
+import useUserInfo from '@/hooks/useUserInfo';
 const Login = () => {
-    const userReducer = useSelector(rootState => rootState.userReducer);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const { isLogined } = useUserInfo();
+    const { dispatch } = useRedux();
     const { mutate, isLoading, error, data } = usePostData(signInApi);
     const userForm = useFormik({
         initialValues: {
@@ -27,11 +28,6 @@ const Login = () => {
         }
     })
     useEffect(() => {
-        if (userReducer.isLogined) {
-            navigate('/');
-        }
-    }, [userReducer.isLogined])
-    useEffect(() => {
         if (error) {
             toastError(error);
         }
@@ -41,6 +37,11 @@ const Login = () => {
             dispatch(action);
         }
     }, [error, data])
+
+
+    if (isLogined) {
+        return <Navigate to={'/'} />
+    }
     return (
         <div className='login-page'>
             <div className="container">

@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Links, NavLink } from 'react-router-dom'
 import { signOut } from '../redux/reducer/userReducer';
 import useRedux from '../hooks/useRedux';
+import useUserInfo from '@/hooks/useUserInfo';
 
 const Header = () => {
     const { useAppSelector } = useRedux();
-    const userReducer = useAppSelector(rootState => rootState.userReducer);
     const cartReducer = useAppSelector(rootState => rootState.cartReducer);
     const cartTotal = cartReducer.cart.reduce((total, product) => total + product.quantity, 0);
     const dispatch = useDispatch();
-    const { isLogined, userLogin } = userReducer;
+    const { isLogined, userLogin } = useUserInfo();
 
 
     //logout

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import HeadingTitle from '../components/HeadingTitle'
 import FormItem from '../components/FormItem'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { toastError, toastPromise } from '../util/toast'
 import { getProfileApi, updateProfileApi } from '../api/userApi'
 import { useFormik } from 'formik'
@@ -10,10 +10,10 @@ import * as Yup from 'yup';
 import ShoesFavorite from '../components/ShoesFavorite'
 import Line from '../components/ui/Line'
 import { formateDate } from '../util/textUtil'
+import useUserInfo from '@/hooks/useUserInfo'
 
 const Profile = () => {
-    const userReducer = useSelector(rootState => rootState.userReducer);
-    const { isLogined, accessToken } = userReducer;
+    const { isLogined } = useUserInfo();
     const profileForm = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -36,11 +36,10 @@ const Profile = () => {
     })
 
     const [ordersHistory, setOrderHistory] = useState([]);
-    const navigate = useNavigate();
 
     //lấy infoProfile
     useEffect(() => {
-        if (accessToken) {
+        if (isLogined) {
             const getProfile = async () => {
                 try {
                     let response = await getProfileApi();
@@ -53,15 +52,12 @@ const Profile = () => {
             }
             getProfile();
         }
-    }, [accessToken])
-    //kiểm tra đã đăng nhập chưa
-    useEffect(() => {
-        if (!isLogined) {
-            navigate('/login');
-        }
-    }, [isLogined]);
+    }, [isLogined])
 
 
+    if (!isLogined) {
+        return <Navigate to={'/login'} />
+    }
     return (
         <div className='container'>
             <div className="row">

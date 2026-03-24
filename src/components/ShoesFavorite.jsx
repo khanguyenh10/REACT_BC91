@@ -1,36 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import Products from './Products';
-import { toastError } from '../util/toast';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getProductFavoritesApi } from '../api/userApi';
+import { useEffect, } from 'react'
+import { Navigate, } from 'react-router-dom';
+import useUserInfo from '@/hooks/useUserInfo';
+import useRedux from '@/hooks/useRedux';
+import { getProductFavoritesActionThunk } from '@/redux/reducer/userReducer';
 
 const ShoesFavorite = () => {
-    const userReducer = useSelector(rootState => rootState.userReducer);
-    const { isLogined, accessToken } = userReducer;
-    const [productsFavorite, setProductsFavorite] = useState([]);
-    const navigate = useNavigate();
+    const { dispatch } = useRedux();
+    const { isLogined, productsFavorite } = useUserInfo();
     useEffect(() => {
-        if (accessToken) {
-            const getUserProductFavorites = async () => {
-                try {
-                    let response = await getProductFavoritesApi();
-                    setProductsFavorite(response.data.content.productsFavorite);
-                } catch (error) {
-                    toastError(error);
-                }
+        dispatch(getProductFavoritesActionThunk());
+    }, [])
 
-            }
-            getUserProductFavorites();
-        }
-    }, [accessToken])
-
-    //kiểm tra đã đăng nhập chưa
-    useEffect(() => {
-        if (!isLogined) {
-            navigate('/login');
-        }
-    }, [isLogined]);
+    if (!isLogined) {
+        return <Navigate to={'/login'} />
+    }
     return (
         <div className='products'>
             <div className="row p-md-5 g-md-5">

@@ -8,8 +8,6 @@ const useFetchData = (fetchApiFunction, params) => {
     const [data, setData] = useState(null); // dùng fetch List hoặc detail 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const { useAppSelector } = useRedux();
-    const { isLogined } = useAppSelector(state => state.userReducer);
     const getDataApi = async (customParams) => {
         const finalParams = customParams || params;
         try {
