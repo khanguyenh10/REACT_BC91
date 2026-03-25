@@ -19,7 +19,7 @@ import BaiTapGioHang from './pages/LiftingStateUpDemo/BaiTapGioHang/BaiTapGioHan
 import GetAllProductPage from './pages/Api/GetAllProductPage'
 import ReactFormDemo from './pages/ReactFormDemo/ReactFormDemo'
 import DemoFormikYup from './pages/ReactFormDemo/DemoFormikYup'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, unstable_HistoryRouter as HistoryBrowser } from 'react-router-dom';
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Contact from './pages/Contact'
@@ -45,12 +45,37 @@ import DemoTinkerAppRedux from './pages/ReduxDemo/DemoTinkerAppRedux'
 import DemoChangeCarRedux from './pages/ReduxDemo/DemoChangeCarRedux'
 import DemoChangeNumberRedux from './pages/ReduxDemo/DemoChangeNumberRedux'
 import BTXemChiTietRedux from './pages/ReduxDemo/BTXemChiTietRedux/BTXemChiTietRedux'
+import BaiTapGioHangRedux from './pages/ReduxDemo/BTGioHangRedux/BTGioHangRedux'
+import BTXucXacRedux from './pages/ReduxDemo/BTXucXacRedux/BTXucXacRedux'
+import PageNotFound from './pages/PageNotFound'
+import { renderDynamicRoutes } from '../route'
+import { lazy, Suspense } from 'react'
+import HookToiUu from './pages/HookToiUu/HookToiUu'
+import DemoCustomHook from './pages/CustomHook/DemoCustomHook'
+import HOCDemo from './pages/HOCDemo/HOCDemo'
+import ContainerDemo from './pages/HOCDemo/ContainerDemo'
+import DrawerContainer from './pages/HOC/DrawerContainer'
+import ResponsiveComponent from './pages/HOC/ResponsiveComponent'
+import DesktopHome from './pages/HomePage/DesktopHome'
+import MobileHome from './pages/HomePage/MobileHome'
+import ProductPage from './pages/ReduxThunk/ProductPage'
+import ProductDetail from './pages/ReduxThunk/ProductDetail'
+import LoginPage from './pages/ReduxThunk/LoginPage.jsx/LoginPage'
+import DemoAntd from './pages/Antd/DemoAntd'
 import VercelDashboard from './pages/Map/VercelDashboard'
+
+const Hooks = lazy(() => import('./pages/Hooks')); // code split
+import { createBrowserHistory } from 'history'
+
+//tương ứng với useNavigate trong component, tuy nhiên có thể sử dụng được ở file không phải component như file cấu hình redux, file cấu hình router
+export const history = createBrowserHistory();
+
 
 createRoot(document.getElementById('root')).render(
   <>
-    <BrowserRouter>
+    <HistoryBrowser history={history}>
       <Provider store={store}>
+        <DrawerContainer />
         <Routes>
           <Route path='' element={<HomeTemplate />}>
             <Route index element={<GetAllProductPage />} ></Route>
@@ -70,6 +95,8 @@ createRoot(document.getElementById('root')).render(
             <Route path='lifting-state-up' element={<LiftingStateUpDemo />}></Route>
             <Route path='exercise-car-store' element={<ExerciseCarStore />}></Route>
             <Route path='cart' element={<BaiTapGioHang />}></Route>
+            <Route path='react-form' element={<ReactFormDemo />} ></Route>
+            <Route path='react-formik-yup' element={<DemoFormikYup />} ></Route>
             <Route path='register' element={<Register />}></Route>
             <Route path='about' element={<About />}></Route>
             <Route path='contact' element={<Contact />}></Route>
@@ -83,10 +110,21 @@ createRoot(document.getElementById('root')).render(
             <Route path='redux-changecar' element={<DemoChangeCarRedux />}></Route>
             <Route path='redux-tinkerapp' element={<DemoTinkerAppRedux />}></Route>
             <Route path='bt-xem-chi-tiet-redux' element={<BTXemChiTietRedux />}></Route>
+            <Route path='bt-gio-hang-redux' element={<BaiTapGioHangRedux />}></Route>
+            <Route path='bt-xuc-xac-redux' element={<BTXucXacRedux />}></Route>
+            {/* <Route path='*' element={<Navigate to='/' />}></Route> */}
+            <Route path='hooks' element={<Hooks />}></Route>
+            <Route path='hooks-toi-uu' element={<HookToiUu />}></Route>
+            <Route path='custom-hook' element={<DemoCustomHook />}></Route>
+            <Route path='hoc-demo' element={<HOCDemo />}></Route>
+            <Route path='container-component-demo' element={<ContainerDemo />}></Route>
+            <Route path='responsive-demo' element={<ResponsiveComponent Component={<DesktopHome />} MobileComponent={<MobileHome />} />}></Route>
+            <Route path='redux-thunk' element={<ProductPage />}></Route>
+            <Route path='detail-thunk/:id' element={<ProductDetail />}></Route>
+            <Route path='login-thunk' element={<LoginPage />}></Route>
+            <Route path='ant-design' element={<DemoAntd />}></Route>
             <Route path='map' element={<VercelDashboard />}></Route>
           </Route>
-        </Routes>
-        <Routes>
           <Route path='admin' element={<AdminTemplate />}>
             <Route index element={<AdminDashBoard />}></Route>
             <Route path='users' element={<UserManagement />}></Route>
@@ -96,12 +134,10 @@ createRoot(document.getElementById('root')).render(
             <Route path='products/edit/:id' element={<EditProduct />}></Route>
             <Route path='product/:id?' element={<ProductAddNewEdit />}></Route>
           </Route>
+          <Route path='*' element={<PageNotFound />}></Route>
+          {/* {renderDynamicRoutes()} */}
         </Routes>
       </Provider>
-    </BrowserRouter>
-    {/* <BaiTapGioHang /> */}
-    {/* <GetAllProductPage /> */}
-    {/* <ReactFormDemo /> */}
-    {/* <DemoFormikYup /> */}
+    </HistoryBrowser>
   </>
 )

@@ -1,8 +1,10 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import * as yup from 'yup'
+import { changeFunctionSubmit } from '../../redux/reducer/DrawerReducer'
 const DemoFormikYup = () => {
-
+    const dispatch = useDispatch();
     const userLoginForm = useFormik({
         initialValues: {
             email: '',
@@ -18,6 +20,13 @@ const DemoFormikYup = () => {
             console.log(valueForm);
         }
     })
+    useEffect(() => {
+        //Tại đây sẽ dispatch hàm userLoginForm.handleSubmit
+        const action = changeFunctionSubmit(userLoginForm.handleSubmit);
+
+        dispatch(action);
+    }, [])
+
     return (
         <form className='container' onSubmit={userLoginForm.handleSubmit}>
             <div className='w-50 mx-auto card'>

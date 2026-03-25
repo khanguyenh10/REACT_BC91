@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const DemoTinkerAppRedux = () => {
-    const { indexReducer } = useSelector(rootState => rootState);
+    const { numberPeopleReducer } = useSelector(rootState => rootState);
     const dispatch = useDispatch();
     const changeAvatar = () => {
         dispatch({ type: 'CHANGE_INDEX_ACTION' });
@@ -15,7 +15,7 @@ const DemoTinkerAppRedux = () => {
                         <div className="card-header bg-danger ">
                             Tinker App
                         </div>
-                        <img src={`https://i.pravatar.cc?u=${indexReducer}`} className='' />
+                        <img src={`https://i.pravatar.cc?u=${numberPeopleReducer}`} className='' />
                         <div className="card-body">
                             <h3 className="card-title">Bob</h3>
                             <p className="card-text">Love hiking and outdoors</p>
