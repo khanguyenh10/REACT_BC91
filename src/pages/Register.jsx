@@ -82,13 +82,13 @@ const Register = () => {
                             <div className='d-flex gap-4'>
                                 <label className="form-label">Gender</label>
                                 <div className="form-check d-flex flex-column">
-                                    <input className="form-check-input" type="radio" name="gender" id="Male" value={true} onChange={userForm.handleChange} checked={Boolean(userForm.values.gender) == true} />
+                                    <input className="form-check-input" type="radio" name="gender" id="Male" value={true} onChange={userForm.handleChange} checked={userForm.values.gender == 'true'} />
                                     <label className="form-check-label" htmlFor="Male" style={{ fontWeight: 400, marginLeft: '-3rem', marginTop: '1rem' }}>
                                         Male
                                     </label>
                                 </div>
                                 <div className="form-check d-flex flex-column">
-                                    <input className="form-check-input" type="radio" name="gender" id="Female" value={false} onChange={userForm.handleChange} checked={Boolean(userForm.values.gender) == false} />
+                                    <input className="form-check-input" type="radio" name="gender" id="Female" value={false} onChange={userForm.handleChange} checked={userForm.values.gender == 'false'} />
                                     <label className="form-check-label" htmlFor="Female" style={{ fontWeight: 400, marginLeft: '-3rem', marginTop: '1rem' }}>
                                         Female
                                     </label>
