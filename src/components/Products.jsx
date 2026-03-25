@@ -14,7 +14,7 @@ const Products = (props) => {
                         <ProductItem product={product} />
                     </div>
                 )}
-                {products?.length === 0 && <div className='col-md-12 text-center'>Not found</div>}
+                {products?.length === 0 && <div className='col-md-12 text-center'>...</div>}
             </div>
         </section >
     )
