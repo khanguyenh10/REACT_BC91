@@ -45,6 +45,7 @@ import DemoTinkerAppRedux from './pages/ReduxDemo/DemoTinkerAppRedux'
 import DemoChangeCarRedux from './pages/ReduxDemo/DemoChangeCarRedux'
 import DemoChangeNumberRedux from './pages/ReduxDemo/DemoChangeNumberRedux'
 import BTXemChiTietRedux from './pages/ReduxDemo/BTXemChiTietRedux/BTXemChiTietRedux'
+import VercelDashboard from './pages/Map/VercelDashboard'
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -82,6 +83,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='redux-changecar' element={<DemoChangeCarRedux />}></Route>
             <Route path='redux-tinkerapp' element={<DemoTinkerAppRedux />}></Route>
             <Route path='bt-xem-chi-tiet-redux' element={<BTXemChiTietRedux />}></Route>
+            <Route path='map' element={<VercelDashboard />}></Route>
           </Route>
         </Routes>
         <Routes>
