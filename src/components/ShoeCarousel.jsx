@@ -15,21 +15,21 @@ const ShoeCarousel = (props) => {
                 slidesPerView={1} //$number slide cùng lúc trên màn hình.
                 navigation
                 pagination={{ clickable: true }}
-                autoplay={{
-                    delay: 2000,
-                    disableOnInteraction: false,
-                }}
-                loop={true}
+            // autoplay={{
+            //     delay: 2000,
+            //     disableOnInteraction: false,
+            // }}
+            // loop={true}
             // {/* onSlideChange={() => console.log('slide change')} */}
             // {/* onSwiper={(swiper) => console.log(swiper)} */}
             >
                 {products?.map((product, index) => (
                     <SwiperSlide key={index}>
                         <div className='row  align-items-center '>
-                            <div className="col-md-6 col-lg-8 text-center">
+                            <div className="col-md-6 col-lg-7 text-center">
                                 <img src={product.image} />
                             </div>
-                            <div className="col-md-6 col-lg-4 ">
+                            <div className="col-md-6 col-lg-4">
                                 {/* <Link to="/detail/1"> */}
                                 <h2 className='fw-light fs-4'>{product.name}</h2>
                                 {/* </Link> */}
