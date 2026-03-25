@@ -1,5 +1,5 @@
 # yêu cầu
-https://apicrm.cybersoft.edu.vn/files/24-02-2026-06-44-55-06-09-2025-01-19-48-capstone-react.pdf
+https://apicrm.cybersoft.edu.vn/files/24-02-2026-06-44-55-06-09-2025-01-19-48-capstone-react.pdf <br/>
 Giao diện:
 Bao gồm 6 trang là index, search, detail, login, register, profile, carts 
 
@@ -149,3 +149,13 @@ export const history = createBrowserHistory();
 </HistoryRouter>
 ```
 
+
+
+## Link API
+ https://shop.cyberlearn.vn/swagger/index.html
+
+## Link Source
+https://github.com/khanguyenh10/REACT_BC91/tree/capstone_reactjs
+
+## Link Deploy
+https://capstone-reactjs-lime.vercel.app/
