@@ -27,12 +27,15 @@ axiosClient.interceptors.response.use((response) => {
     return response;
 }, (error) => {
     console.log('Error in response interceptor:', error);
+    console.log('Error response status:', error.response?.status);
     if (error.response?.status == 401) {
-        history.push('/login');
+        // history.push('/login');
         removeLocalStorage(ACCESSTOKEN);
         removeLocalStorage(USERLOGIN);
+        window.location.href = '/login';
     } else if (error.response?.status == 400 || error.response?.status == 404) {
-        history.push('/notfound');
+        // history.push('/notfound');
+        window.location.href = '/notfound';
     }
     return Promise.reject(error);
 });

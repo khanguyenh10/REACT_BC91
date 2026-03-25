@@ -54,8 +54,8 @@ const Carts = () => {
     useEffect(() => {
         if (data) {
             toastSuccess('Đặt hàng thành công');
-            dispatch(resetCart(selectedProducts));
-            navigate('/profile');
+            // dispatch(resetCart(selectedProducts));
+            // navigate('/profile');
         }
         if (error) {
             toastError(error);
