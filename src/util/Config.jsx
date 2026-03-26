@@ -1,4 +1,5 @@
 import axios from "axios";
+import { history } from "../main";
 
 //hẳng số
 export const DOMAIN = 'https://apistore.cybersoft.edu.vn/api';
@@ -68,14 +69,27 @@ httpClient.interceptors.request.use(config => {
     }
     return config;
 }, error => {
+    return Promise.reject(error);
+}
+);
+httpClient.interceptors.response.use(response => {
+    return response;
+}, error => {
     if (error.response.status === 401) {
         //Xử lý lỗi xác thực, có thể là token hết hạn hoặc không có token
         alert('Cần phải đăng nhập mới vào được!');
         history.push('/login');
+    } else if (error.response.status === 400) {
+        alert('Dữ liệu gửi lên không hợp lệ!');
+        history.push('/');
+    } else if (error.response.status === 404) {
+        alert('Tài nguyên không tồn tại!');
+        history.push('/');
+    } else if (error.response.status === 500) {
+        // alert('Lỗi máy chủ!');
+        history.push('/');
     }
-    return Promise.reject(error);
-}
-);
+});
 
 //statuscode
 /*

@@ -62,7 +62,7 @@ import ProductPage from './pages/ReduxThunk/ProductPage'
 import ProductDetail from './pages/ReduxThunk/ProductDetail'
 import LoginPage from './pages/ReduxThunk/LoginPage.jsx/LoginPage'
 import DemoAntd from './pages/Antd/DemoAntd'
-import VercelDashboard from './pages/Map/VercelDashboard'
+// import VercelDashboard from './pages/Map/VercelDashboard'
 
 const Hooks = lazy(() => import('./pages/Hooks')); // code split
 import { createBrowserHistory } from 'history'
@@ -123,7 +123,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='detail-thunk/:id' element={<ProductDetail />}></Route>
             <Route path='login-thunk' element={<LoginPage />}></Route>
             <Route path='ant-design' element={<DemoAntd />}></Route>
-            <Route path='map' element={<VercelDashboard />}></Route>
+            {/* <Route path='map' element={<VercelDashboard />}></Route> */}
           </Route>
           <Route path='admin' element={<AdminTemplate />}>
             <Route index element={<AdminDashBoard />}></Route>

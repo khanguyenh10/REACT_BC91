@@ -1,6 +1,8 @@
 //Component là 1 thành phần của giao diện
 
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { ACCESSTOKEN, USERLOGIN } from "../util/Config";
 
 /*
 class component (tham khảo)
@@ -10,6 +12,25 @@ tạo tắt bằng phím tắt rafce
 */
 
 const HeaderHome = () => {
+    const { userLogin } = useSelector(state => state.UserLoginReducer);
+
+    const renderLogin = () => {
+        if (userLogin) {
+            return (
+                <>
+                    <NavLink className="nav-link" to="/profile">{userLogin}</NavLink>
+                    <button className="btn btn-link nav-link mx-2" onClick={logout}>Logout</button>
+                </>
+            );
+        }
+        return <NavLink className="nav-link" to="/login">Login</NavLink>
+    }
+
+    const logout = () => {
+        localStorage.removeItem(ACCESSTOKEN);
+        localStorage.removeItem(USERLOGIN);
+        window.location.href = '/login'; //gọi reload lại trang (đồng với bấm phím f5 )
+    }
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <NavLink className="navbar-brand" to="/">Cybersoft</NavLink>
@@ -17,7 +38,7 @@ const HeaderHome = () => {
             <div className="collapse navbar-collapse" id="collapsibleNavId">
                 <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                     <li className="nav-item">
-                        <NavLink className={({ isActive }) => (isActive ? "nav-link bg-light text-dark" : "nav-link")} style={({ isActive }) => isActive ? { border: "3px solid orange" } : {}} to="/login" aria-current="page">Login <span className="visually-hidden">(current)</span></NavLink>
+                        {renderLogin()}
                     </li>
 
                     <li className="nav-item">
